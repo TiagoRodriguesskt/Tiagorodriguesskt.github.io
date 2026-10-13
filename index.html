@@ -1,273 +1,422 @@
-<!DOCTYPE html>
-<html lang="pt_BR">
-
+<!doctype html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=500, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="imagem/png" href="./imagens/favicon.jpg" />
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
-    <title>PORTIFOLIO</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tiago · Programação × Física × Quântica</title>
+  <meta name="description" content="Portfólio do Tiago: programador Python e estudante de Física, Matemática e Computação Quântica.">
+
+  <!-- Fontes: JetBrains Mono (código) e Space Grotesk (títulos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- HEADER -->
-    <header class="header-2" id="header">
-        <!-- <a href="#" class="logo">Logo</a> -->
-        <div class="logo">
-            <img src="./imagens/code.png">
-        </div>
-        <ul>
-            <li><a href="#home" onclick="toggle()">home</a></li>
-            <li><a href="#about" onclick="toggle()">sobre</a></li>
-            <li><a href="#services" onclick="toggle()">serviços</a></li>
-            <li><a href="#portfolio" onclick="toggle()">portifolio</a></li>
-            <li><a href="#team" onclick="toggle()">time</a></li>
-            <li><a href="#contact" onclick="toggle()">contato</a></li>
-        </ul>
-        <div class="toggle" onclick="toggle()"></div>
-    </header>
-    <!-- BANNER -->
-    <section class="banner" id="home">
-        <h2><span>Seja</span> bem vindo!</h2>
-    </section>
-    <!-- SOBRE -->
-    <section class="sec" id="about">
-        <div class="content">
-            <div class="mxw800p">
-                <h3>Quem sou</h3>
-                <p>Meu nome é Tiago. É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto legível de uma página quando estiver examinando sua diagramação. A vantagem de usar Lorem Ipsum é que ele tem uma distribuição normal de
-                    letras, ao contrário de "Conteúdo aqui, conteúdo aqui", fazendo com que ele tenha uma aparência similar a de um texto legível. Muitos softwares de publicação e editores de páginas na internet agora usam Lorem Ipsum como texto-modelo
-                    padrão, e uma rápida busca por 'lorem ipsum' mostra vários websites ainda em sua fase de construção. Várias versões novas surgiram ao longo dos anos, eventualmente por acidente, e às vezes de propósito (injetando humor, e coisas do
-                    gênero). Que connhecer mais?
-                </p>
-                <a href="#" class="btn">Ver mais</a>
-            </div>
-        </div>
-    </section>
-    <!-- SERVIÇO -->
-    <section class="sec" id="services">
-        <div class="content">
-            <div class="mxw800p">
-                <h3>O que fazemos</h3>
-                <p>Lorem, É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto legível de uma página quando estiver examinando sua diagramação. A vantagem de usar Lorem Ipsum é que ele tem uma distribuição normal de letras, ao
-                    contrário de "Conteúdo aqui, conteúdo aqui", fazendo com que ele tenha uma aparência similar a de um texto legível. Muitos softwares de publicação e editores de páginas na internet agora usam Lorem Ipsum como texto-modelo padrão, e
-                    uma rápida busca por 'lorem ipsum' mostra vários websites ainda em sua fase de construção. Várias versões novas surgiram ao longo dos anos, eventualmente por acidente, e às vezes de propósito (injetando humor, e coisas do gênero).
-                </p>
-            </div>
-            <div class="services">
-                <div class="box">
-                    <div class="iconBx">
-                        <img src="./imagens/icon1.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h2>Design</h2>
-                        <p>Existem muitas variações disponíveis de passagens de Lorem Ipsum, mas a maioria sofreu algum tipo de alteração, seja por inserção de passagens com humor, ou palavras aleatórias que não parecem nem um pouco convincentes</p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="iconBx">
-                        <img src="./imagens/icon2.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h2>Desenvolvedor</h2>
-                        <p>Existem muitas variações disponíveis de passagens de Lorem Ipsum, mas a maioria sofreu algum tipo de alteração, seja por inserção de passagens com humor, ou palavras aleatórias que não parecem nem um pouco convincentes</p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="iconBx">
-                        <img src="./imagens/icon3.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h2>Análista</h2>
-                        <p>Existem muitas variações disponíveis de passagens de Lorem Ipsum, mas a maioria sofreu algum tipo de alteração, seja por inserção de passagens com humor, ou palavras aleatórias que não parecem nem um pouco convincentes</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- STATS -->
-    <section class="sec stats">
-        <div class="content">
-            <div class="mxw800p">
-                <h3>Quantidades</h3>
-                <p>Lorem, Se você pretende usar uma passagem de Lorem Ipsum, precisa ter certeza de que não há algo embaraçoso escrito escondido no meio do texto. Todos os geradores de Lorem Ipsum na internet tendem a repetir pedaços predefinidos conforme
-                    necessário, fazendo deste o primeiro gerador de Lorem Ipsum autêntico da internet.
-                </p>
-            </div>
-            <div class="statsBox">
-                <div class="box">
-                    <h2>1+</h2>
-                    <h4>Projetos</h4>
-                </div>
-                <div class="box">
-                    <h2>1+</h2>
-                    <h4>Clientes</h4>
-                </div>
-                <div class="box">
-                    <h2>1+</h2>
-                    <h4>Cidade</h4>
-                </div>
-                <div class="box">
-                    <h2>1+</h2>
-                    <h4>Premios</h4>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- PORTIFOLIO -->
-    <section class="sec work" id="portfolio">
-        <div class="content">
-            <div class="mxw800p">
-                <h3>Nossos trabalhos</h3>
-                <p>Lorem, Ele usa um dicionário com mais de 200 palavras em Latim combinado com um punhado de modelos de estrutura de frases para gerar um Lorem Ipsum com aparência razoável, livre de repetições, inserções de humor, palavras não características,
-                    etc.
-                </p>
-            </div>
-            <!-- CUIDADO -->
-            <div class="workBx">
-                <div class="brand" style="background-image: url(./imagens/empresa1.jpg);">
-                    <a href="#">
-                        <h2>EMPRESA 1</h2>
-                    </a>
-                </div>
-                <div class="brand" style="background-image: url(./imagens/empresa2.jpg);">
-                    <a href="#">
-                        <h2>EMPRESA 2</h2>
-                    </a>
-                </div>
-                <div class="brand" style="background-image: url(./imagens/empresa3.jpg);">
-                    <a href="#">
-                        <h2>EMPRESA 3</h2>
-                    </a>
-                </div>
-                <div class="brand" style="background-image: url(./imagens/empresa4.jpg);">
-                    <a href="#">
-                        <h2>EMPRESA 4</h2>
-                    </a>
-                </div>
-                <div class="brand" style="background-image: url(./imagens/empresa5.jpg);">
-                    <a href="#">
-                        <h2>EMPRESA 5</h2>
-                    </a>
-                </div>
-                <div class="brand" style="background-image: url(./imagens/empresa6.jpg);">
-                    <a href="#">
-                        <h2>EMPRESA 6</h2>
-                    </a>
-                </div>
-                <div class="brand" style="background-image: url(./imagens/empresa7.jpg);">
-                    <a href="#">
-                        <h2>EMPRESA 7</h2>
-                    </a>
-                </div>
-                <div class="brand" style="background-image: url(./imagens/empresa8.jpg);">
-                    <a href="#">
-                        <h2>EMPRESA 8</h2>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- TIME -->
-    <section class="sec" id="team">
-        <div class="content">
-            <div class="mxw800p">
-                <h3>Nossos especialistas</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur magni at pariatur itaque cupiditate eos eveniet harum voluptatibus ea dicta, cum sequi saepe odio incidunt vitae, laudantium aliquam temporibus vel?
-                </p>
-            </div>
-            <div class="teamBx">
-                <div class="member">
-                    <div class="imgBx">
-                        <img src="./imagens/1.jpg" alt="Design">
-                    </div>
-                    <div class="details">
-                        <div>
-                            <h2>Fernanda<br /><span>Design</span></h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="imgBx">
-                        <img src="./imagens/2.jpg" alt="Makerting">
-                    </div>
-                    <div class="details">
-                        <div>
-                            <h2>Camila<br /><span>Makerting</span></h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="imgBx">
-                        <img src="./imagens/3.jpg" alt="Desenvolvedor">
-                    </div>
-                    <div class="details">
-                        <div>
-                            <h2>André<br /><span>Desenvolvedor</span></h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="imgBx">
-                        <img src="./imagens/4.jpg" alt="Desenvolvedor">
-                    </div>
-                    <div class="details">
-                        <div>
-                            <h2>Thiago<br /><span>Desenvolvedor</span></h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- CONTATO -->
-    <section class="sec contact" id="contact">
-        <div class="content">
-            <div class="mxw800p">
-                <h3>Enviar mensagem</h3>
-                <p>Lorem, enviar uma mensagem.</p>
-            </div>
-            <div class="contactForm">
-                <form>
-                    <div class="row100">
-                        <div class="inputBx50">
-                            <input type="text" name="" placeholder="Seu nome">
-                        </div>
-                        <div class="inputBx50">
-                            <input type="text" name="" placeholder="Seu melhor Email">
-                        </div>
-                    </div>
-                    <div class="row100">
-                        <div class="inputBx100">
-                            <textarea type="text" name="" placeholder="Messagem" cols="30" rows="10">
-                            </textarea>
-                        </div>
-                    </div>
-                    <div class="row100">
-                        <div class="inputBx100">
-                            <input type="submit" name="" value="Send">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="sci">
-                <ul>
-                    <li>
-                        <a href="#"><img src="./imagens/facebook.png" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="./imagens/twitter.png" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="./imagens/linkedin.png" alt=""></a>
-                    </li>
-                </ul>
-            </div>
-            <p class="copyright">Desenvolvedor <span>Tiago Rodrigues</span></p>
-        </div>
-    </section>
-    <script type="text/javascript" src="script.js"></script>
-</body>
 
+  <!-- Fundo animado: uma grade de pontos que ondula perto do mouse (desenhado pelo script.js) -->
+  <canvas id="fundo" aria-hidden="true"></canvas>
+
+  <!-- ===================== TOPO ===================== -->
+  <header class="topo">
+    <div class="container topo-inner">
+      <a href="#inicio" class="logo" aria-label="Tiago, voltar ao início">
+        <span class="usuario">tiago@qubit</span><span class="caminho">:~$</span><span class="cursor" aria-hidden="true"></span>
+      </a>
+
+      <!-- O menu é um "fio de qubit" passando por portas quânticas -->
+      <nav class="circuito-nav" aria-label="Navegação principal">
+        <span class="fio-label" aria-hidden="true">q₀</span>
+        <a href="#inicio" class="porta">[H] ./inicio</a>
+        <a href="#bell" class="porta">[CX] ./bell</a>
+        <a href="#projetos" class="porta">[X] ./projetos</a>
+        <a href="#certificacoes" class="porta">[Y] ./mainframe</a>
+        <a href="#estudos" class="porta">[Rz] ./estudos</a>
+        <a href="#contato" class="porta medida">[M] ./contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== INÍCIO / SOBRE ===================== -->
+    <section id="inicio" class="container hero">
+      <div class="hero-texto">
+        <p class="prompt"><span class="cifrao">$</span> <span id="digitando" data-texto="python3 -m tiago --estado"></span></p>
+
+        <!-- O nome começa "em superposição" e colapsa em Tiago -->
+        <h1 id="nome" class="nome" aria-label="Tiago">Tiago</h1>
+
+        <p class="ket">|ψ⟩ = <span class="c1">α</span>|código⟩ + <span class="c2">β</span>|física⟩</p>
+
+        <p class="intro">
+          Operador de suporte em mainframe IBM Z, desenvolvedor de sistemas por formação e estudante
+          de Física, Matemática e Computação Quântica por paixão. Em 2027 começo a graduação em Física.
+          Enquanto isso, escrevo simulações em Python para entender como a natureza calcula.
+        </p>
+
+        <div class="acoes">
+          <a class="btn btn-primario" href="#projetos">$ ver projetos →</a>
+          <a class="btn" href="#contato">medir(contato)</a>
+        </div>
+      </div>
+
+      <!-- Esfera de Bloch interativa -->
+      <div class="janela bloch-janela">
+        <div class="janela-barra">
+          <div class="bolinhas" aria-hidden="true"><span></span><span></span><span></span></div>
+          <span>bloch.py — interativo</span>
+        </div>
+
+        <div class="bloch-corpo">
+          <canvas id="bloch" tabindex="0" role="img"
+            aria-label="Esfera de Bloch interativa. Arraste ou use as setas do teclado para girar; use os botões abaixo para aplicar portas quânticas."></canvas>
+
+          <div class="bloch-leitura">
+            <pre id="bloch-saida" aria-live="polite"></pre>
+            <div class="prob">
+              <div class="prob-linha"><span>P(0)</span><div class="prob-barra"><i id="p0-barra"></i></div><span id="p0-txt">—</span></div>
+              <div class="prob-linha"><span>P(1)</span><div class="prob-barra"><i id="p1-barra"></i></div><span id="p1-txt">—</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="portas" role="group" aria-label="Aplicar porta quântica ao qubit">
+          <button class="porta-btn" data-porta="H" title="Hadamard: cria superposição">H</button>
+          <button class="porta-btn" data-porta="X" title="Pauli-X: inverte |0⟩ e |1⟩">X</button>
+          <button class="porta-btn" data-porta="Y" title="Pauli-Y">Y</button>
+          <button class="porta-btn" data-porta="Z" title="Pauli-Z: inverte a fase">Z</button>
+          <button class="porta-btn" data-porta="S" title="Porta S: gira a fase em 90°">S</button>
+          <button class="porta-btn" data-porta="T" title="Porta T: gira a fase em 45°">T</button>
+          <button class="porta-btn medir" id="btn-medir" title="Medir: colapsa em |0⟩ ou |1⟩">medir</button>
+          <button class="porta-btn reset" id="btn-reset" title="Voltar para |0⟩">reset</button>
+        </div>
+        <p class="colapso" id="bloch-colapso" aria-live="polite"></p>
+        <p class="dica">arraste a esfera para girar · aplique portas para mudar |ψ⟩</p>
+      </div>
+    </section>
+
+    <!-- ===================== CIRCUITO DE BELL ===================== -->
+    <section id="bell" class="container secao revelar">
+      <div class="secao-cabeca">
+        <h2>Circuito de Bell</h2>
+        <span class="comentario">$ rodar bell.qasm --shots N</span>
+      </div>
+      <p class="secao-intro">
+        A porta H coloca q₀ em superposição e a CNOT emaranha q₁ com ele.
+        Ao medir, os dois qubits sempre concordam: só aparecem 00 ou 11, cada um em cerca de metade das vezes.
+        Ligue o ruído para ver como um computador quântico real erra de vez em quando.
+      </p>
+
+      <div class="janela bell-janela">
+        <div class="bell-esq">
+          <div class="circuito-scroll">
+            <div class="circuito" id="circuito">
+              <!-- Cada linha é um qubit. As colunas são: rótulo, fio, porta, fio, porta, fio, medida, fio -->
+              <div class="fio">
+                <span class="rotulo">q₀ |0⟩</span>
+                <span class="linha"></span>
+                <span class="gate" style="--t: .3s">H</span>
+                <span class="linha"></span>
+                <span class="controle" style="--t: .6s" aria-label="controle da CNOT"></span>
+                <span class="linha"></span>
+                <span class="gate medida" style="--t: .95s">M</span>
+                <span class="linha"></span>
+                <span class="pulso" aria-hidden="true"></span>
+              </div>
+              <div class="fio">
+                <span class="rotulo">q₁ |0⟩</span>
+                <span class="linha"></span>
+                <span class="vazio"></span>
+                <span class="linha"></span>
+                <span class="alvo" style="--t: .6s" aria-label="alvo da CNOT"></span>
+                <span class="linha"></span>
+                <span class="gate medida" style="--t: .95s">M</span>
+                <span class="linha"></span>
+                <span class="pulso" aria-hidden="true"></span>
+              </div>
+            </div>
+          </div>
+          <pre class="codigo-mini"><span class="p"># o mesmo circuito em Qiskit</span>
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.cx(0, 1)
+qc.measure_all()</pre>
+        </div>
+
+        <div class="bell-dir">
+          <div class="controles">
+            <label class="campo">shots
+              <select id="shots">
+                <option value="100">100</option>
+                <option value="1000" selected>1000</option>
+                <option value="10000">10000</option>
+              </select>
+            </label>
+            <label class="campo check"><input type="checkbox" id="ruido"> ruído (2%)</label>
+            <button id="rodar" class="btn btn-primario">$ rodar</button>
+          </div>
+
+          <div class="histograma" aria-label="Histograma dos resultados">
+            <div class="barra" data-k="00"><span class="valor">—</span><div class="coluna"></div></div>
+            <div class="barra erro" data-k="01"><span class="valor">—</span><div class="coluna"></div></div>
+            <div class="barra erro" data-k="10"><span class="valor">—</span><div class="coluna"></div></div>
+            <div class="barra" data-k="11"><span class="valor">—</span><div class="coluna"></div></div>
+          </div>
+          <div class="rotulos" aria-hidden="true"><span>00</span><span>01</span><span>10</span><span>11</span></div>
+
+          <pre class="bell-saida" id="bell-saida" aria-live="polite"><span class="p">aguardando execução…</span></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJETOS ===================== -->
+    <section id="projetos" class="container secao revelar">
+      <div class="secao-cabeca">
+        <h2>Projetos</h2>
+        <span class="comentario">$ ls -la projetos/</span>
+      </div>
+
+      <div class="grade">
+        <article class="cartao">
+          <div class="cartao-topo">q[0] ─[H]─ meu_universo_cientifico/quantica</div>
+          <div class="cartao-corpo">
+            <h3>Emaranhamento e decoerência</h3>
+            <p>Estados de Bell construídos em Qiskit e simulados com ruído no Qiskit Aer, para ver na prática como o emaranhamento se degrada num computador quântico real.</p>
+            <div class="tags">python · qiskit · qiskit aer</div>
+            <a class="link-projeto" href="https://github.com/TiagoRodriguesskt/meu_universo_cientifico" target="_blank" rel="noopener">ver código ↗</a>
+          </div>
+        </article>
+        <article class="cartao">
+          <div class="cartao-topo">q[1] ─[X]─ meu_universo_cientifico/fisica</div>
+          <div class="cartao-corpo">
+            <h3>Problema dos três corpos</h3>
+            <p>Três massas sob gravidade mútua, integradas com passo adaptativo do SciPy, e animações matemáticas feitas com Manim.</p>
+            <div class="tags">python · scipy · manim</div>
+            <a class="link-projeto" href="https://github.com/TiagoRodriguesskt/meu_universo_cientifico" target="_blank" rel="noopener">ver código ↗</a>
+          </div>
+        </article>
+        <article class="cartao">
+          <div class="cartao-topo medida">q[2] ─[M]─ criptografia_de_cesar/</div>
+          <div class="cartao-corpo">
+            <h3>Cifra de César</h3>
+            <p>A cifra clássica de substituição implementada em Python, com explicação e instruções de uso. O ponto de partida para chegar, um dia, à criptografia quântica.</p>
+            <div class="tags">python · criptografia</div>
+            <a class="link-projeto" href="https://github.com/TiagoRodriguesskt/criptografia_de_cesar" target="_blank" rel="noopener">ver código ↗</a>
+          </div>
+        </article>
+      </div>
+      <p class="mais-projetos"><a href="https://github.com/TiagoRodriguesskt?tab=repositories" target="_blank" rel="noopener">$ ls --all  →  todos os repositórios no GitHub ↗</a></p>
+    </section>
+
+    <!-- ===================== MAINFRAME: TRABALHO, CURSO E CERTIFICAÇÕES ===================== -->
+    <section id="certificacoes" class="container secao revelar">
+      <div class="secao-cabeca">
+        <h2>Mainframe · IBM Z</h2>
+        <span class="comentario">$ whoami --trabalho</span>
+      </div>
+      <p class="secao-intro">
+        Desde 2020 trabalho com mainframe IBM Z, o tipo de sistema que processa transações de bancos e grandes empresas.
+        Em paralelo, faço um curso de um ano da IBM sobre a plataforma, e os badges abaixo são as etapas que já concluí.
+      </p>
+
+      <!-- Experiência atual e curso -->
+      <div class="trabalho">
+        <article class="cartao">
+          <div class="cartao-topo">● em execução · trabalho/</div>
+          <div class="cartao-corpo">
+            <h3>Junior Support Operator · Mainframe</h3>
+            <!-- O tempo de casa é calculado sozinho pelo script.js a partir de data-desde -->
+            <p class="cert-info">CSU Digital S.A · desde ago 2020<span class="tempo-casa" data-desde="2020-08"></span></p>
+            <p>Atendimento e suporte às equipes operacionais e de gestão: registro, acompanhamento e solução de chamados,
+              rotinas administrativas em ferramentas internas e monitoramento de transações e fluxos operacionais e financeiros,
+              sempre dentro do SLA combinado.</p>
+            <div class="tags">mainframe · chamados · dados financeiros · SLA</div>
+          </div>
+        </article>
+        <article class="cartao">
+          <div class="cartao-topo medida">● em andamento · curso_ibm_z/</div>
+          <div class="cartao-corpo">
+            <h3>Curso IBM Z · 1 ano</h3>
+            <p class="cert-info">IBM · em andamento</p>
+            <p>Formação na plataforma IBM Z: z/OS, z/OS UNIX System Services, programação de sistemas e prática com mainframe real no IBM Z Xplore.</p>
+            <div class="tags">9 badges IBM concluídos até agora</div>
+          </div>
+        </article>
+      </div>
+
+      <p class="subtitulo-certs">$ credly --listar --verificado <span class="p"># cada badge abre a verificação oficial</span></p>
+
+      <!-- Os três principais, em destaque -->
+      <div class="certs-destaque">
+        <a class="cert cert-grande" href="https://www.credly.com/badges/74f652c9-28e4-44cb-8482-97cf418e15de" target="_blank" rel="noopener">
+          <img src="https://images.credly.com/images/3c94ec71-118c-48c0-8ffd-58af4fb5bc12/IBM_Certificate_-_zOS_Mainframe_Practitioner.png" alt="" width="96" height="96" loading="lazy">
+          <span class="cert-texto">
+            <span class="cert-nome">IBM z/OS Mainframe Practitioner</span>
+            <span class="cert-info">IBM · ago 2026</span>
+          </span>
+        </a>
+        <a class="cert cert-grande" href="https://www.credly.com/badges/24d3e81d-91b2-4804-b36f-99b4ed5b8028" target="_blank" rel="noopener">
+          <img src="https://images.credly.com/images/9dde9b48-6cec-4bc4-ab33-ffeac5c681c3/image.png" alt="" width="96" height="96" loading="lazy">
+          <span class="cert-texto">
+            <span class="cert-nome">IBM Z Xplore – Advanced</span>
+            <span class="cert-info">IBM · set 2026</span>
+          </span>
+        </a>
+        <a class="cert cert-grande" href="https://www.credly.com/badges/bd32d07b-ea5f-434b-98d3-a2bb422480fd" target="_blank" rel="noopener">
+          <img src="https://images.credly.com/images/22acc75c-8099-4403-a558-89478ae937cc/IBM_20Z_20101_20Professional_20Certificate.png" alt="" width="96" height="96" loading="lazy">
+          <span class="cert-texto">
+            <span class="cert-nome">IBM Z 101 Certificate</span>
+            <span class="cert-info">IBM · set 2026</span>
+          </span>
+        </a>
+      </div>
+
+      <!-- Os demais, em formato compacto -->
+      <div class="certs-lista">
+        <a class="cert" href="https://www.credly.com/badges/c353835b-0a8e-44a2-a3b6-5e7237c2a65e" target="_blank" rel="noopener">
+          <img src="https://images.credly.com/images/0f3e4162-ab6b-457c-8c0d-835a14680666/image.png" alt="" width="52" height="52" loading="lazy">
+          <span class="cert-texto"><span class="cert-nome">IBM Z Xplore – Concepts</span><span class="cert-info">IBM · ago 2026</span></span>
+        </a>
+        <a class="cert" href="https://www.credly.com/badges/bab742b8-7f63-4640-97d0-5e9502c3e470" target="_blank" rel="noopener">
+          <img src="https://images.credly.com/images/067d8a35-4668-4f66-a6e2-e77ecb857da9/image.png" alt="" width="52" height="52" loading="lazy">
+          <span class="cert-texto"><span class="cert-nome">Introduction to System Programming on IBM Z</span><span class="cert-info">IBM · ago 2026</span></span>
+        </a>
+        <a class="cert" href="https://www.credly.com/badges/ff859235-b513-46f2-9f09-2d1ff9b5d9d9" target="_blank" rel="noopener">
+          <img src="https://images.credly.com/images/3b863758-8c39-4b26-8a84-12a958ae2ff4/image.png" alt="" width="52" height="52" loading="lazy">
+          <span class="cert-texto"><span class="cert-nome">Introducing z/OS UNIX System Services</span><span class="cert-info">IBM · ago 2026</span></span>
+        </a>
+        <a class="cert" href="https://www.credly.com/badges/9561670a-125a-41cd-a893-30dd6046b777" target="_blank" rel="noopener">
+          <img src="https://images.credly.com/images/c29eff7b-eeab-43f8-8ef7-d7943cf65dcd/image.png" alt="" width="52" height="52" loading="lazy">
+          <span class="cert-texto"><span class="cert-nome">Introduction to z/OS Commands and Panels on IBM Z</span><span class="cert-info">IBM · ago 2026</span></span>
+        </a>
+        <a class="cert" href="https://www.credly.com/badges/2311e1ea-5290-42ce-a82a-d79654c05ae3" target="_blank" rel="noopener">
+          <img src="https://images.credly.com/images/7bfcd4c3-3b81-41db-8396-12037b44fae7/image.png" alt="" width="52" height="52" loading="lazy">
+          <span class="cert-texto"><span class="cert-nome">Introduction to IBM z/OS</span><span class="cert-info">IBM · ago 2026</span></span>
+        </a>
+        <a class="cert" href="https://www.credly.com/badges/3806060d-910d-408a-9ab9-74109721594d" target="_blank" rel="noopener">
+          <img src="https://images.credly.com/images/cfd8fce1-08b2-4d7b-97e1-f54a48adacaf/Explore_20Emerging_20Tech_201.png" alt="" width="52" height="52" loading="lazy">
+          <span class="cert-texto"><span class="cert-nome">Explore Emerging Tech</span><span class="cert-info">IBM SkillsBuild · ago 2026</span></span>
+        </a>
+        <a class="cert" href="https://www.credly.com/badges/a676e343-b91a-4387-a344-15dd038f9f1b" target="_blank" rel="noopener">
+          <img src="https://images.credly.com/images/5e2afabf-62f3-48ae-bbed-7e57c2e78c6a/blob" alt="" width="52" height="52" loading="lazy">
+          <span class="cert-texto"><span class="cert-nome">Lifelong Learning 2026</span><span class="cert-info m">Certiprof · em andamento</span></span>
+        </a>
+      </div>
+
+      <p class="mais-projetos"><a href="https://www.credly.com/users/tiago-r-c-goncalves" target="_blank" rel="noopener">$ open credly  →  perfil completo no Credly ↗</a></p>
+    </section>
+
+    <!-- ===================== ESTUDOS ===================== -->
+    <section id="estudos" class="container secao revelar">
+      <div class="secao-cabeca">
+        <h2>Formação &amp; estudos</h2>
+        <span class="comentario">$ cat formacao.md</span>
+      </div>
+
+      <!-- Linha do tempo da formação, desenhada como um fio de qubit -->
+      <ol class="formacao">
+        <li class="etapa">
+          <span class="no" aria-hidden="true">✓</span>
+          <span class="etapa-tipo">técnico</span>
+          <h3>Desenvolvimento de Sistemas</h3>
+          <p class="cert-info">concluído</p>
+        </li>
+        <li class="etapa">
+          <span class="no" aria-hidden="true">✓</span>
+          <span class="etapa-tipo">graduação · tecnólogo</span>
+          <h3>Análise e Desenvolvimento de Sistemas</h3>
+          <p class="cert-info">concluído</p>
+        </li>
+        <li class="etapa">
+          <span class="no" aria-hidden="true">✓</span>
+          <span class="etapa-tipo">pós-graduação</span>
+          <h3>Engenharia de Software</h3>
+          <p class="cert-info">concluído</p>
+        </li>
+        <li class="etapa futura">
+          <span class="no" aria-hidden="true">ψ</span>
+          <span class="etapa-tipo">2ª graduação</span>
+          <h3>Física</h3>
+          <p class="cert-info m">início em 2027</p>
+        </li>
+      </ol>
+
+      <p class="subtitulo-certs">$ ls estudos/tempo_livre/ <span class="p"># o que estudo por conta própria</span></p>
+      <div class="grade grade-4">
+        <article class="cartao">
+          <div class="cartao-topo">∂ fisica/</div>
+          <div class="cartao-corpo">
+            <h3>Física</h3>
+            <p>Mecânica clássica e gravitação, levadas para o computador em simulações como a do problema dos três corpos.</p>
+          </div>
+        </article>
+        <article class="cartao">
+          <div class="cartao-topo">∑ matematica/</div>
+          <div class="cartao-corpo">
+            <h3>Matemática</h3>
+            <p>A base de tudo: álgebra linear para a mecânica quântica e cálculo para as simulações.</p>
+          </div>
+        </article>
+        <article class="cartao">
+          <div class="cartao-topo">|ψ⟩ quantica/</div>
+          <div class="cartao-corpo">
+            <h3>Computação Quântica</h3>
+            <p>Qubits, portas, emaranhamento e ruído, praticados com Qiskit e Qiskit Aer.</p>
+          </div>
+        </article>
+        <article class="cartao">
+          <div class="cartao-topo">&gt;&gt;&gt; python/</div>
+          <div class="cartao-corpo">
+            <h3>Python</h3>
+            <p>Minha linguagem principal: NumPy e SciPy para simular, Manim para animar e um cheat sheet próprio para consultar.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== TERMINAL (easter egg) ===================== -->
+    <section id="terminal" class="container secao revelar">
+      <div class="secao-cabeca">
+        <h2>Terminal</h2>
+        <span class="comentario">dica: digite help</span>
+      </div>
+      <div class="janela">
+        <div class="janela-barra">
+          <div class="bolinhas" aria-hidden="true"><span></span><span></span><span></span></div>
+          <span>tiago@qubit: ~</span>
+        </div>
+        <div class="terminal-corpo" id="term-saida" aria-live="polite"></div>
+        <form class="terminal-linha" id="term-form" autocomplete="off">
+          <label for="term-entrada">tiago@qubit:~$</label>
+          <input id="term-entrada" type="text" spellcheck="false" placeholder="help">
+        </form>
+      </div>
+    </section>
+
+    <!-- ===================== CONTATO ===================== -->
+    <section id="contato" class="container secao revelar">
+      <div class="contato">
+        <div>
+          <p class="comentario">$ medir --canal=contato</p>
+          <h2>Vamos conversar?</h2>
+        </div>
+        <!-- Troque pelos seus links -->
+        <div class="contato-links">
+          <a class="btn" href="https://github.com/TiagoRodriguesskt" target="_blank" rel="noopener">github ↗</a>
+          <a class="btn" href="https://www.linkedin.com/in/tiago-rodrigues-0b5417124/" target="_blank" rel="noopener">linkedin ↗</a>
+          <a class="btn btn-medida" href="mailto:tiagorodriguesskt@gmail.com">tiagorodriguesskt@gmail.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container rodape">
+    <span>© <span id="ano">2026</span> Tiago · feito com HTML, CSS e JavaScript</span>
+    <span>nenhum qubit sofreu decoerência na construção deste site</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
