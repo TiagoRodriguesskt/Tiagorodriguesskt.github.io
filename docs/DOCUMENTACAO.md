@@ -268,9 +268,9 @@ Uma grade de pontos espaçados de 30 px, redesenhada a cada quadro. Cada ponto �
 
 ### 6.3 Abertura
 
-1. As letras de "Tiago" ficam trocando entre símbolos (`ψ φ θ α β ℏ ∂ ∑ ...`).
+1. As letras de "Tiago Rodrigues" ficam trocando entre símbolos (`ψ φ θ α β ℏ ∂ ∑ ...`). Cada palavra é um bloco que nunca se quebra no meio, então em telas estreitas o sobrenome desce para a linha de baixo.
 2. Ao mesmo tempo, o comando `python3 -m tiago --estado` é digitado letra por letra.
-3. Quando a digitação termina, cada letra "colapsa" no seu valor real, uma de cada vez.
+3. Quando a digitação termina, cada letra "colapsa" no seu valor real, uma de cada vez. Para trocar o nome, basta mudar o texto do `<h1 id="nome">` no `index.html`.
 4. A largura de cada letra é fixada antes, para o nome não tremer durante o efeito.
 
 ### 6.4 Esfera de Bloch

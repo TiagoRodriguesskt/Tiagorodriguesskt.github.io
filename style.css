@@ -176,13 +176,14 @@ section[id] { scroll-margin-top: 84px; }
 .nome {
   margin: 0;
   font-family: var(--titulo);
-  font-size: clamp(60px, 10vw, 112px);
+  font-size: clamp(54px, 8.5vw, 104px);
   line-height: .95;
   letter-spacing: -0.04em;
   color: var(--forte);
   cursor: default;
 }
-.nome span {
+.nome .palavra { display: inline-block; white-space: nowrap; }
+.nome .palavra span {
   display: inline-block;
   text-align: center;
   transition: color .15s;

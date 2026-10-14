@@ -163,19 +163,29 @@ document.querySelectorAll('[data-desde]').forEach((el) => {
    "em superposição", trocando entre símbolos. Quando o comando
    termina, cada letra colapsa no seu valor real. */
 const nomeEl = document.getElementById('nome');
-const NOME = [...nomeEl.textContent.trim()];
+const PALAVRAS = nomeEl.textContent.trim().split(/\s+/);   // ex.: ['Tiago', 'Rodrigues']
+const NOME = PALAVRAS.flatMap((p) => [...p]);              // só as letras, sem os espaços
 const SIMBOLOS = 'ψφθαβℏ∂∑∫01⟩⟨√πΔΩλ';
 let letras = [];
 let emSuperposicao = false;
 
+// Cada palavra vira um bloco que nunca se quebra no meio; entre as palavras fica
+// um espaço comum, então o nome pula para a linha de baixo quando não cabe.
 function montarNome() {
   nomeEl.textContent = '';
-  letras = NOME.map((ch) => {
-    const s = document.createElement('span');
-    s.textContent = ch;
-    s.setAttribute('aria-hidden', 'true');
-    nomeEl.appendChild(s);
-    return s;
+  letras = [];
+  PALAVRAS.forEach((palavra, i) => {
+    if (i > 0) nomeEl.appendChild(document.createTextNode(' '));
+    const bloco = document.createElement('span');
+    bloco.className = 'palavra';
+    bloco.setAttribute('aria-hidden', 'true');
+    [...palavra].forEach((ch) => {
+      const s = document.createElement('span');
+      s.textContent = ch;
+      bloco.appendChild(s);
+      letras.push(s);
+    });
+    nomeEl.appendChild(bloco);
   });
 }
 
@@ -193,7 +203,8 @@ function superposicao(atrasoInicial) {
   emSuperposicao = true;
   return new Promise((resolver) => {
     const inicio = performance.now();
-    const colapsaEm = letras.map((_, i) => atrasoInicial + i * 140);
+    const passoLetra = letras.length > 8 ? 85 : 140;   // nomes longos colapsam mais rápido
+    const colapsaEm = letras.map((_, i) => atrasoInicial + i * passoLetra);
 
     function passo() {
       const dt = performance.now() - inicio;
