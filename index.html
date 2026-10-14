@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
   <!-- O "?v=2" força o navegador a baixar a versão nova (troque o número a cada atualização grande) -->
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
@@ -34,6 +34,7 @@
         <a href="#projetos" class="porta">[X] ./projetos</a>
         <a href="#certificacoes" class="porta">[Y] ./mainframe</a>
         <a href="#estudos" class="porta">[Rz] ./estudos</a>
+        <a href="#artigos" class="porta">[T] ./artigos</a>
         <a href="#contato" class="porta medida">[M] ./contato</a>
       </nav>
     </div>
@@ -377,6 +378,21 @@ qc.measure_all()</pre>
       </div>
     </section>
 
+    <!-- ===================== ARTIGOS ===================== -->
+    <!-- Os cartões são montados pelo script.js a partir da lista em artigos.js -->
+    <section id="artigos" class="container secao revelar">
+      <div class="secao-cabeca">
+        <h2>Artigos</h2>
+        <span class="comentario">$ ls -la artigos/</span>
+      </div>
+      <p class="secao-intro">
+        Textos sobre física, computação quântica e simulação em Python.
+        Cada artigo abre na plataforma onde foi publicado.
+      </p>
+      <div id="lista-artigos" class="artigos" aria-live="polite"></div>
+      <p class="mais-projetos" id="perfil-academico" hidden></p>
+    </section>
+
     <!-- ===================== TERMINAL (easter egg) ===================== -->
     <section id="terminal" class="container secao revelar">
       <div class="secao-cabeca">
@@ -418,6 +434,7 @@ qc.measure_all()</pre>
     <span>nenhum qubit sofreu decoerência na construção deste site</span>
   </footer>
 
-  <script src="script.js?v=2"></script>
+  <script src="artigos.js?v=3"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>

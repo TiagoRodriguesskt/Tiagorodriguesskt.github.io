@@ -7,6 +7,7 @@
    5) circuito de Bell que roda de verdade
    6) terminal (easter egg)
    7) menu ativo e seções aparecendo ao rolar
+   8) artigos (lista em artigos.js)
    ========================================================= */
 
 /* ---------- 1) UTILIDADES ---------- */
@@ -656,7 +657,7 @@ let rodarBell = () => {};
     saida.scrollTop = saida.scrollHeight;
   }
 
-  const SECOES = { inicio: 'inicio', sobre: 'inicio', bell: 'bell', projetos: 'projetos', certificacoes: 'certificacoes', certificados: 'certificacoes', mainframe: 'certificacoes', estudos: 'estudos', formacao: 'estudos', terminal: 'terminal', contato: 'contato' };
+  const SECOES = { inicio: 'inicio', sobre: 'inicio', bell: 'bell', projetos: 'projetos', certificacoes: 'certificacoes', certificados: 'certificacoes', mainframe: 'certificacoes', estudos: 'estudos', formacao: 'estudos', artigos: 'artigos', terminal: 'terminal', contato: 'contato' };
 
   const ARQUIVOS = {
     'bloch.py':
@@ -689,6 +690,7 @@ measure q -> c;`,
   projetos        lista os projetos em destaque
   certificados    lista as certificações
   formacao        mostra a formação acadêmica
+  artigos         lista os artigos publicados
   contato         e-mail e links
   github          abre o GitHub do Tiago
   linkedin        abre o LinkedIn do Tiago
@@ -703,7 +705,7 @@ measure q -> c;`,
       escrever('Tiago: Junior Support Operator em mainframe na CSU Digital desde 2020, desenvolvedor de sistemas por formação e futuro físico (graduação em Física a partir de 2027).', 'ok');
     },
     ls() {
-      escrever('inicio/  bell/  projetos/  mainframe/  estudos/  contato/  bloch.py  bell.qasm');
+      escrever('inicio/  bell/  projetos/  mainframe/  estudos/  artigos/  contato/  bloch.py  bell.qasm');
     },
     cd(args) {
       const destino = SECOES[(args[0] || '').replace(/[./]/g, '')];
@@ -746,6 +748,14 @@ Lifelong Learning 2026                         Certiprof (em andamento)`);
 [✓] Tecnólogo em Análise e Desenvolvimento de Sistemas
 [✓] Pós-graduação em Engenharia de Software`);
       escrever('[ψ] Graduação em Física: início em 2027', 'med');
+    },
+    artigos() {
+      if (listaArtigos.length === 0) {
+        escrever('total 0 · nenhum artigo publicado ainda. O primeiro sai em breve!', 'med');
+        return;
+      }
+      listaArtigos.forEach((a) => escrever(`${formatarData(a.data).padEnd(9)} ${a.titulo}  (${a.onde || 'link'})`));
+      escrever('digite cd artigos para ver os cartões', 'ok');
     },
     contato() {
       escrever(
@@ -813,6 +823,100 @@ linkedin  linkedin.com/in/tiago-rodrigues-0b5417124`);
       entrada.value = historico[posicao] || '';
       e.preventDefault();
     }
+  });
+})();
+
+
+/* ---------- 8) ARTIGOS ----------
+   Lê a lista ARTIGOS (do arquivo artigos.js) e monta um cartão para cada
+   artigo, do mais novo para o mais antigo. Com a lista vazia, mostra um
+   aviso de "em breve". Fica antes do bloco 7 para os cartões já existirem
+   quando a navegação começar a observar a página. */
+const MESES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+
+// Lista de artigos válidos, já ordenada. Usada pela seção e pelo terminal.
+const listaArtigos = (typeof ARTIGOS !== 'undefined' && Array.isArray(ARTIGOS) ? ARTIGOS : [])
+  .filter((a) => a && a.titulo && /^https:\/\//.test(a.link || ''))   // só links https
+  .sort((a, b) => String(b.data || '').localeCompare(String(a.data || '')));
+
+// "2027-03" vira "mar 2027"
+function formatarData(data) {
+  const [ano, mes] = String(data || '').split('-');
+  return MESES[Number(mes) - 1] ? `${MESES[Number(mes) - 1]} ${ano}` : (ano || '');
+}
+
+(function artigos() {
+  const lista = document.getElementById('lista-artigos');
+
+  // Link do perfil acadêmico no fim da seção (só se estiver preenchido e for https)
+  const perfil = typeof PERFIL_ACADEMICO !== 'undefined' ? PERFIL_ACADEMICO : null;
+  if (perfil && /^https:\/\//.test(perfil.link || '')) {
+    const caixa = document.getElementById('perfil-academico');
+    const link = document.createElement('a');
+    link.href = perfil.link;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = `$ open perfil  →  todos os artigos no ${perfil.nome || 'perfil acadêmico'} ↗`;
+    caixa.appendChild(link);
+    caixa.hidden = false;
+  }
+
+  // Atalho para criar um elemento com classe e texto
+  // (textContent: o conteúdo nunca é interpretado como HTML)
+  function criar(tag, classe, texto) {
+    const el = document.createElement(tag);
+    if (classe) el.className = classe;
+    if (texto) el.textContent = texto;
+    return el;
+  }
+
+  if (listaArtigos.length === 0) {
+    const vazio = criar('div', 'janela artigos-vazio');
+    const barra = criar('div', 'janela-barra');
+    const bolinhas = criar('div', 'bolinhas');
+    bolinhas.setAttribute('aria-hidden', 'true');
+    bolinhas.append(criar('span'), criar('span'), criar('span'));
+    barra.append(bolinhas, criar('span', '', 'artigos/ — vazio'));
+
+    const corpo = criar('pre', 'artigos-vazio-corpo');
+    corpo.append(
+      criar('span', 'p', '$ '), 'ls -la artigos/\n',
+      'total 0\n\n',
+      criar('span', 'm', '# primeiro artigo em breve'), '\n',
+      criar('span', 'p', '# temas: computação quântica · física computacional · simulação em Python'),
+      criar('span', 'cursor-bloco')
+    );
+    vazio.append(barra, corpo);
+    lista.appendChild(vazio);
+    return;
+  }
+
+  listaArtigos.forEach((a, i) => {
+    const onde = a.onde || 'link externo';
+    const cartao = criar('a', 'artigo');
+    cartao.href = a.link;
+    cartao.target = '_blank';
+    cartao.rel = 'noopener';
+
+    const numero = criar('span', 'artigo-num', String(listaArtigos.length - i).padStart(2, '0'));
+    numero.setAttribute('aria-hidden', 'true');
+
+    // Se o link for um DOI (doi.org/...), mostra o identificador no cartão
+    const doi = (a.link.match(/doi\.org\/(.+)$/) || [])[1];
+    const meta = [formatarData(a.data), onde, doi ? `DOI ${decodeURIComponent(doi)}` : '']
+      .filter(Boolean).join(' · ');
+
+    const corpo = criar('div', 'artigo-corpo');
+    corpo.append(
+      criar('span', 'artigo-meta', meta),
+      criar('h3', '', a.titulo)
+    );
+    if (a.resumo) corpo.append(criar('p', '', a.resumo));
+    if (Array.isArray(a.tags) && a.tags.length) corpo.append(criar('div', 'tags', a.tags.join(' · ')));
+    corpo.append(criar('span', 'artigo-link', `ler no ${onde} ↗`));
+
+    cartao.append(numero, corpo);
+    lista.appendChild(cartao);
   });
 })();
 

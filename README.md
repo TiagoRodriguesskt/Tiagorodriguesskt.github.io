@@ -19,7 +19,8 @@ Site pessoal no estilo **Terminal + Circuito Quântico**, feito só com HTML, CS
 |---|---|
 | `index.html` | A estrutura e todos os textos do site |
 | `style.css` | Cores, fontes e layout. As cores principais ficam no topo, em `:root` |
-| `script.js` | Todos os efeitos, separados em 7 blocos comentados |
+| `script.js` | Todos os efeitos, separados em 8 blocos comentados |
+| `artigos.js` | A lista de artigos. Para publicar um artigo, é só preencher este arquivo |
 
 ## Efeitos
 
@@ -35,7 +36,10 @@ Quem configurou o sistema para reduzir animações vê o site sem os movimentos.
 ## Conteúdo
 
 Todas as seções já estão preenchidas: início, projetos, mainframe (trabalho, curso e certificações),
-formação e estudos, e contato. Para mudar qualquer texto, edite o `index.html`.
+formação e estudos, artigos e contato. Para mudar qualquer texto, edite o `index.html`.
+
+A seção **Artigos** mostra "primeiro artigo em breve" enquanto a lista do `artigos.js` estiver vazia.
+Os artigos não ficam no site: cada cartão leva ao Zenodo, arXiv ou Google Acadêmico.
 
 O tempo de casa na CSU Digital é calculado sozinho pelo `script.js` a partir de `data-desde="2020-08"`.
 

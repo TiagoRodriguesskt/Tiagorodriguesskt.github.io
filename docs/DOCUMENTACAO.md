@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | **Autor** | Tiago Rodrigues · [GitHub](https://github.com/TiagoRodriguesskt) · [LinkedIn](https://www.linkedin.com/in/tiago-rodrigues-0b5417124/) |
-| **Versão** | 1.0 |
+| **Versão** | 1.1 |
 | **Data** | outubro de 2026 |
 | **Tecnologias** | HTML5, CSS3, JavaScript (ES2020+), Canvas 2D |
 | **Dependências** | nenhuma biblioteca; apenas Google Fonts |
@@ -154,7 +154,8 @@ O visual é muito específico (fios, portas, janelas de terminal). Um framework 
 Portifólio_Tiago/
 ├── index.html          estrutura e todos os textos
 ├── style.css           visual: cores, fontes, layout, animações
-├── script.js           comportamento: 7 módulos independentes
+├── script.js           comportamento: 8 módulos independentes
+├── artigos.js          lista de artigos (o único arquivo a editar para publicar um)
 ├── README.md           guia rápido
 └── docs/
     ├── DOCUMENTACAO.md este documento
@@ -211,10 +212,12 @@ flowchart LR
     U --> C["5 · Circuito de Bell"]
     U --> T["6 · Terminal"]
     U --> N["7 · Navegação<br/>menu ativo + revelar"]
+    U --> AR["8 · Artigos<br/>cartões a partir de artigos.js"]
     C -->|"rodarBell()"| T
+    AR -->|"listaArtigos"| T
 ```
 
-Cada módulo é uma **função que se executa sozinha** (IIFE), com suas próprias variáveis. Assim, um efeito não interfere no outro. A única ligação entre módulos é a função `rodarBell()`, que o terminal usa no comando `bell`.
+Cada módulo é uma **função que se executa sozinha** (IIFE), com suas próprias variáveis. Assim, um efeito não interfere no outro. As únicas ligações entre módulos são a função `rodarBell()`, que o terminal usa no comando `bell`, e a lista `listaArtigos`, que o terminal usa no comando `artigos`.
 
 ---
 
@@ -228,11 +231,12 @@ flowchart TB
     PROJ["#projetos<br/>3 projetos do GitHub"]
     MAIN["#certificacoes<br/>trabalho, curso IBM Z e badges"]
     EST["#estudos<br/>linha do tempo da formação + estudos livres"]
+    ART["#artigos<br/>artigos publicados (links externos)"]
     TERM["#terminal<br/>terminal interativo"]
     CONT["#contato<br/>GitHub, LinkedIn, e-mail"]
     ROD["Rodapé"]
 
-    TOPO --> INICIO --> BELL --> PROJ --> MAIN --> EST --> TERM --> CONT --> ROD
+    TOPO --> INICIO --> BELL --> PROJ --> MAIN --> EST --> ART --> TERM --> CONT --> ROD
 ```
 
 O menu mapeia cada seção para uma porta quântica:
@@ -244,6 +248,7 @@ O menu mapeia cada seção para uma porta quântica:
 | `[X]` | projetos | porta de ação, "virar o bit" |
 | `[Y]` | mainframe | — |
 | `[Rz]` | estudos | rotação contínua: aprendizado em andamento |
+| `[T]` | artigos | a porta T é a "fase fina" (π/4): cada artigo é um pequeno passo |
 | `[M]` | contato | medição: o momento de "colapsar" em uma conversa |
 
 ---
@@ -286,7 +291,7 @@ Um interpretador de comandos simples: o texto digitado é separado em `comando` 
 | `whoami` | apresentação curta |
 | `ls` · `cd <seção>` | lista e navega pelas seções |
 | `cat bloch.py` · `cat bell.qasm` | mostra os códigos de exemplo |
-| `projetos` · `certificados` · `formacao` | resumos das seções |
+| `projetos` · `certificados` · `formacao` · `artigos` | resumos das seções |
 | `contato` · `github` · `linkedin` | links |
 | `qubit` | prepara $\|+\rangle$ e mede |
 | `bell` | rola até o circuito e executa |
@@ -295,7 +300,18 @@ Um interpretador de comandos simples: o texto digitado é separado em `comando` 
 
 As setas ↑ e ↓ navegam pelo histórico de comandos.
 
-### 6.7 Navegação
+### 6.7 Artigos
+
+Os artigos **não ficam hospedados no site**: cada cartão leva à plataforma onde o artigo foi publicado (Zenodo, arXiv, Google Acadêmico...).
+A lista fica num arquivo separado, `artigos.js`, para que publicar um artigo não exija mexer no HTML.
+
+- Os artigos são ordenados do mais novo para o mais antigo e numerados (`01`, `02`...).
+- Se o link for um DOI (`https://doi.org/...`), o identificador aparece no cartão.
+- Só são aceitos links que começam com `https://`; qualquer outro é ignorado. Todos os textos entram com `textContent`, nunca como HTML.
+- Com a lista vazia, a seção mostra uma janela de terminal com `total 0` e o aviso "primeiro artigo em breve".
+- Se `PERFIL_ACADEMICO.link` estiver preenchido, aparece no fim da seção um link para o perfil completo.
+
+### 6.8 Navegação
 
 Dois `IntersectionObserver`:
 
@@ -601,6 +617,25 @@ No `index.html`, dentro de `<section id="projetos">`, copie um bloco `<article c
 
 Quando a graduação em Física começar, na seção `#estudos`, troque `início em 2027` por `em andamento`. Quando terminar, tire a classe `futura` do `<li>` e troque `ψ` por `✓`.
 
+### Publicar um artigo
+
+1. Publique o artigo na plataforma escolhida (por exemplo, o Zenodo, que gera um DOI).
+2. Abra o `artigos.js`, copie o modelo comentado, apague as `//` do começo das linhas e preencha:
+
+```js
+{
+  titulo: 'Título do artigo',
+  data:   '2027-03',
+  resumo: 'Uma ou duas frases dizendo do que o artigo trata.',
+  tags:   ['computação quântica', 'python'],
+  onde:   'Zenodo',
+  link:   'https://doi.org/10.5281/zenodo.0000000',
+},
+```
+
+3. Quando tiver um perfil acadêmico, preencha também `PERFIL_ACADEMICO.link` no mesmo arquivo.
+4. Publique com `git add`, `git commit` e `git push`. A seção e o comando `artigos` do terminal se atualizam sozinhos.
+
 ### Criar um comando no terminal
 
 No `script.js`, bloco 6, adicione uma função ao objeto `COMANDOS` e uma linha no texto do `help`:
@@ -622,6 +657,7 @@ Classes disponíveis para `escrever`: `'ok'` (verde), `'med'` (âmbar), `'erro'`
 - [ ] Criar páginas individuais para cada projeto, com gráficos e explicações
 - [ ] Adicionar uma versão em inglês do site
 - [ ] Atualizar a formação quando a graduação em Física começar (2027)
+- [ ] Publicar o primeiro artigo e preencher o `artigos.js`
 - [ ] Incluir novos badges conforme o curso IBM Z avança
 
 ---
@@ -635,4 +671,5 @@ Classes disponíveis para `escrever`: `'ok'` (verde), `'med'` (âmbar), `'erro'`
 | 0.3 | out 2026 | Projetos reais do GitHub |
 | 0.4 | out 2026 | Seção Mainframe: trabalho na CSU Digital, curso IBM Z e badges do Credly |
 | 0.5 | out 2026 | LinkedIn, e-mail e linha do tempo da formação |
-| **1.0** | out 2026 | Correção da ordem no resultado do Bell; documentação técnica |
+| 1.0 | out 2026 | Correção da ordem no resultado do Bell; documentação técnica |
+| **1.1** | out 2026 | Seção Artigos (lista em `artigos.js`, links externos, DOI, comando `artigos`); menu mais compacto |

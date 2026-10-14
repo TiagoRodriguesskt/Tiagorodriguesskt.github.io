@@ -113,8 +113,8 @@ section[id] { scroll-margin-top: 84px; }
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 18px;
-  font-size: 13px;
+  gap: 12px;
+  font-size: 12.5px;
 }
 .circuito-nav::before {
   content: "";
@@ -129,7 +129,7 @@ section[id] { scroll-margin-top: 84px; }
 
 .porta {
   position: relative;
-  padding: 7px 12px;
+  padding: 7px 10px;
   border: 1px solid var(--fio);
   background: var(--painel);
   text-decoration: none;
@@ -687,6 +687,64 @@ select {
 .cert-grande { padding: 20px; gap: 18px; }
 .cert-grande img { width: 96px; height: 96px; }
 .cert-grande .cert-nome { font-family: var(--titulo); font-size: 18px; font-weight: 700; }
+
+/* Artigos: uma lista no estilo índice de revista científica */
+.artigos { display: flex; flex-direction: column; gap: 12px; }
+
+.artigo {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 20px;
+  padding: 22px 24px;
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  text-decoration: none;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+.artigo:hover {
+  transform: translateX(4px);
+  border-color: var(--a1);
+  box-shadow: 0 18px 40px -26px var(--a1);
+}
+.artigo-num {
+  font-family: var(--titulo);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--fio-claro);
+  transition: color .25s;
+}
+.artigo:hover .artigo-num { color: var(--a1); }
+.artigo-corpo { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.artigo-meta { font-size: 12px; color: var(--apagado); }
+.artigo h3 { margin: 0; font-family: var(--titulo); font-size: 21px; line-height: 1.3; color: var(--forte); }
+.artigo p { margin: 0; font-size: 14px; max-width: 760px; }
+.artigo .tags { margin-top: 2px; }
+.artigo-link { margin-top: 4px; font-size: 13px; color: var(--a1); }
+
+/* Enquanto não há artigos */
+.artigos-vazio-corpo {
+  margin: 0;
+  padding: 20px;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+.cursor-bloco {
+  display: inline-block;
+  width: 9px;
+  height: 1.1em;
+  margin-left: 6px;
+  vertical-align: text-bottom;
+  background: var(--a2);
+  animation: piscar-cursor 1.1s steps(1) infinite;
+}
+
+@media (max-width: 560px) {
+  .artigo { grid-template-columns: 1fr; gap: 8px; padding: 18px; }
+  .artigo-num { font-size: 22px; }
+}
 
 /* ---------- 9) TERMINAL ---------- */
 .terminal-corpo {
