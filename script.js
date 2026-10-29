@@ -747,7 +747,7 @@ Introducing z/OS UNIX System Services          IBM
 Introduction to z/OS Commands and Panels       IBM
 Agile Explorer                                 IBM SkillsBuild
 Explore Emerging Tech                          IBM SkillsBuild
-Lifelong Learning 2026                         Certiprof (em andamento)`);
+Lifelong Learning 2026                         Certiprof (válido até abr 2027)`);
       escrever('badges do curso IBM Z (1 ano, em andamento) · digite cd mainframe', 'ok');
     },
     github() {

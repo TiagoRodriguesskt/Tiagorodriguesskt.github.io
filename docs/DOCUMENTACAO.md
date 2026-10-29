@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | **Autor** | Tiago Rodrigues · [GitHub](https://github.com/TiagoRodriguesskt) · [LinkedIn](https://www.linkedin.com/in/tiago-rodrigues-0b5417124/) |
-| **Versão** | 1.3 |
+| **Versão** | 1.4 |
 | **Data** | outubro de 2026 |
 | **Tecnologias** | HTML5, CSS3, JavaScript (ES2020+), Canvas 2D |
 | **Dependências** | nenhuma biblioteca; apenas Google Fonts |
@@ -695,4 +695,5 @@ Classes disponíveis para `escrever`: `'ok'` (verde), `'med'` (âmbar), `'erro'`
 | 1.0 | out 2026 | Correção da ordem no resultado do Bell; documentação técnica |
 | 1.1 | out 2026 | Seção Artigos (lista em `artigos.js`, links externos, DOI, comando `artigos`); menu mais compacto |
 | 1.2 | out 2026 | Nome completo na abertura (efeito de superposição com várias palavras); ícone do site (favicon); versão `?v=4` dos arquivos |
-| **1.3** | out 2026 | Badge Agile Explorer (IBM SkillsBuild) na seção Mainframe e no comando `certificados`; versão `?v=5` |
+| 1.3 | out 2026 | Badge Agile Explorer (IBM SkillsBuild) na seção Mainframe e no comando `certificados`; versão `?v=5` |
+| **1.4** | out 2026 | Badge Lifelong Learning 2026 (Certiprof) corrigido de "em andamento" para "válido até abr 2027"; versão `?v=6` |
