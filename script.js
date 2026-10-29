@@ -745,6 +745,7 @@ Introduction to IBM z/OS                       IBM
 Introduction to System Programming on IBM Z    IBM
 Introducing z/OS UNIX System Services          IBM
 Introduction to z/OS Commands and Panels       IBM
+Agile Explorer                                 IBM SkillsBuild
 Explore Emerging Tech                          IBM SkillsBuild
 Lifelong Learning 2026                         Certiprof (em andamento)`);
       escrever('badges do curso IBM Z (1 ano, em andamento) · digite cd mainframe', 'ok');

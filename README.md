@@ -21,6 +21,7 @@ Site pessoal no estilo **Terminal + Circuito Quântico**, feito só com HTML, CS
 | `style.css` | Cores, fontes e layout. As cores principais ficam no topo, em `:root` |
 | `script.js` | Todos os efeitos, separados em 8 blocos comentados |
 | `artigos.js` | A lista de artigos. Para publicar um artigo, é só preencher este arquivo |
+| `img/` e `favicon.ico` | O ícone do site, em vários tamanhos, gerado a partir de `Tiago.jpeg` |
 
 ## Efeitos
 

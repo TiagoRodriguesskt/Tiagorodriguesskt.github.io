@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | **Autor** | Tiago Rodrigues · [GitHub](https://github.com/TiagoRodriguesskt) · [LinkedIn](https://www.linkedin.com/in/tiago-rodrigues-0b5417124/) |
-| **Versão** | 1.1 |
+| **Versão** | 1.3 |
 | **Data** | outubro de 2026 |
 | **Tecnologias** | HTML5, CSS3, JavaScript (ES2020+), Canvas 2D |
 | **Dependências** | nenhuma biblioteca; apenas Google Fonts |
@@ -116,7 +116,7 @@ Das ideias apresentadas, três foram escolhidas e outras foram acrescentadas par
 Os textos de exemplo foram trocados por dados reais, em ordem:
 
 1. **GitHub:** leitura dos repositórios públicos para escolher os projetos em destaque (`meu_universo_cientifico` e `criptografia_de_cesar`).
-2. **Credly:** os 10 badges, com imagens oficiais e link de verificação.
+2. **Credly:** os badges (11 em outubro de 2026), com imagens oficiais e link de verificação.
 3. **Experiência:** cargo, empresa e atividades na CSU Digital.
 4. **LinkedIn e e-mail:** botões de contato.
 5. **Formação:** linha do tempo acadêmica.
@@ -156,6 +156,11 @@ Portifólio_Tiago/
 ├── style.css           visual: cores, fontes, layout, animações
 ├── script.js           comportamento: 8 módulos independentes
 ├── artigos.js          lista de artigos (o único arquivo a editar para publicar um)
+├── favicon.ico         ícone clássico, procurado automaticamente pelos navegadores
+├── img/
+│   ├── icone-32.png    ícone da aba do navegador
+│   ├── icone-180.png   ícone do iPhone/iPad (tela inicial)
+│   └── icone-192.png   ícone do Android e de telas de alta resolução
 ├── README.md           guia rápido
 └── docs/
     ├── DOCUMENTACAO.md este documento
@@ -599,6 +604,22 @@ Os testes foram feitos com um navegador Chromium automatizado (Playwright), simu
 
 ## 13. Manutenção: como alterar o site
 
+### Trocar o ícone do site
+
+O ícone da aba (*favicon*) foi gerado a partir de uma imagem quadrada de 400 × 400 px (`Tiago.jpeg`), reduzida para
+os tamanhos que cada aparelho usa: 32, 180 e 192 px (pasta `img/`), mais um `favicon.ico` na raiz. As três versões
+em PNG estão ligadas no `<head>` do `index.html`:
+
+```html
+<link rel="icon" type="image/png" sizes="32x32" href="img/icone-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="img/icone-192.png">
+<link rel="apple-touch-icon" href="img/icone-180.png">
+```
+
+Para trocar o ícone, substitua os arquivos mantendo os mesmos nomes e tamanhos. Use uma imagem **quadrada** e com
+poucos detalhes: a 32 px, textos pequenos ficam ilegíveis. Os navegadores guardam o ícone por bastante tempo, então
+pode ser preciso apertar `Ctrl + Shift + R` para ver a troca.
+
 ### Mudar as cores
 
 Edite as variáveis `--a1` e `--a2` no topo do `style.css`. O site inteiro, incluindo os canvas, usa essas variáveis.
@@ -672,4 +693,6 @@ Classes disponíveis para `escrever`: `'ok'` (verde), `'med'` (âmbar), `'erro'`
 | 0.4 | out 2026 | Seção Mainframe: trabalho na CSU Digital, curso IBM Z e badges do Credly |
 | 0.5 | out 2026 | LinkedIn, e-mail e linha do tempo da formação |
 | 1.0 | out 2026 | Correção da ordem no resultado do Bell; documentação técnica |
-| **1.1** | out 2026 | Seção Artigos (lista em `artigos.js`, links externos, DOI, comando `artigos`); menu mais compacto |
+| 1.1 | out 2026 | Seção Artigos (lista em `artigos.js`, links externos, DOI, comando `artigos`); menu mais compacto |
+| 1.2 | out 2026 | Nome completo na abertura (efeito de superposição com várias palavras); ícone do site (favicon); versão `?v=4` dos arquivos |
+| **1.3** | out 2026 | Badge Agile Explorer (IBM SkillsBuild) na seção Mainframe e no comando `certificados`; versão `?v=5` |
