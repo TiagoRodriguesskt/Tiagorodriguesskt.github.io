@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | **Autor** | Tiago Rodrigues · [GitHub](https://github.com/TiagoRodriguesskt) · [LinkedIn](https://www.linkedin.com/in/tiago-rodrigues-0b5417124/) |
-| **Versão** | 1.4 |
+| **Versão** | 1.5 |
 | **Data** | outubro de 2026 |
 | **Tecnologias** | HTML5, CSS3, JavaScript (ES2020+), Canvas 2D |
 | **Dependências** | nenhuma biblioteca; apenas Google Fonts |
@@ -116,7 +116,7 @@ Das ideias apresentadas, três foram escolhidas e outras foram acrescentadas par
 Os textos de exemplo foram trocados por dados reais, em ordem:
 
 1. **GitHub:** leitura dos repositórios públicos para escolher os projetos em destaque (`meu_universo_cientifico` e `criptografia_de_cesar`).
-2. **Credly:** os badges (11 em outubro de 2026), com imagens oficiais e link de verificação.
+2. **Credly:** os badges (12 em novembro de 2026), com imagens oficiais e link de verificação.
 3. **Experiência:** cargo, empresa e atividades na CSU Digital.
 4. **LinkedIn e e-mail:** botões de contato.
 5. **Formação:** linha do tempo acadêmica.
@@ -696,4 +696,5 @@ Classes disponíveis para `escrever`: `'ok'` (verde), `'med'` (âmbar), `'erro'`
 | 1.1 | out 2026 | Seção Artigos (lista em `artigos.js`, links externos, DOI, comando `artigos`); menu mais compacto |
 | 1.2 | out 2026 | Nome completo na abertura (efeito de superposição com várias palavras); ícone do site (favicon); versão `?v=4` dos arquivos |
 | 1.3 | out 2026 | Badge Agile Explorer (IBM SkillsBuild) na seção Mainframe e no comando `certificados`; versão `?v=5` |
-| **1.4** | out 2026 | Badge Lifelong Learning 2026 (Certiprof) corrigido de "em andamento" para "válido até abr 2027"; versão `?v=6` |
+| 1.4 | out 2026 | Badge Lifelong Learning 2026 (Certiprof) corrigido de "em andamento" para "válido até abr 2027"; versão `?v=6` |
+| **1.5** | nov 2026 | Badge AI Literacy (IBM SkillsBuild) na seção Mainframe e no comando `certificados`; versão `?v=7` |

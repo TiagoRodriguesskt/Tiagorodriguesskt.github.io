@@ -745,6 +745,7 @@ Introduction to IBM z/OS                       IBM
 Introduction to System Programming on IBM Z    IBM
 Introducing z/OS UNIX System Services          IBM
 Introduction to z/OS Commands and Panels       IBM
+AI Literacy                                    IBM SkillsBuild
 Agile Explorer                                 IBM SkillsBuild
 Explore Emerging Tech                          IBM SkillsBuild
 Lifelong Learning 2026                         Certiprof (válido até abr 2027)`);
