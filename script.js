@@ -8,6 +8,7 @@
    6) terminal (easter egg)
    7) menu ativo e seções aparecendo ao rolar
    8) artigos (lista em artigos.js)
+   9) badges e certificado (lista em badges.js)
    ========================================================= */
 
 /* ---------- 1) UTILIDADES ---------- */
@@ -699,7 +700,7 @@ measure q -> c;`,
   cd <seção>      vai até uma seção (ex.: cd projetos)
   cat <arquivo>   mostra um arquivo (bloch.py, bell.qasm)
   projetos        lista os projetos em destaque
-  certificados    lista as certificações
+  certificados    badges e certificado (--todos inclui os em andamento)
   formacao        mostra a formação acadêmica
   artigos         lista os artigos publicados
   contato         e-mail e links
@@ -736,20 +737,21 @@ criptografia_de_cesar/     cifra clássica em Python
 Python_Cheat_Sheet/        referência de Python para ciência computacional`);
       escrever('digite github para ver todos os repositórios', 'ok');
     },
-    certificados() {
-      escrever(
-`IBM z/OS Mainframe Practitioner                IBM
-IBM Z Xplore – Advanced / Concepts             IBM
-IBM Z 101 Certificate                          IBM
-Introduction to IBM z/OS                       IBM
-Introduction to System Programming on IBM Z    IBM
-Introducing z/OS UNIX System Services          IBM
-Introduction to z/OS Commands and Panels       IBM
-AI Literacy                                    IBM SkillsBuild
-Agile Explorer                                 IBM SkillsBuild
-Explore Emerging Tech                          IBM SkillsBuild
-Lifelong Learning 2026                         Certiprof (válido até abr 2027)`);
-      escrever('badges do curso IBM Z (1 ano, em andamento) · digite cd mainframe', 'ok');
+    certificados(args) {
+      // "certificados --todos" mostra também os badges em andamento
+      const todos = args.includes('--todos') || args.includes('-a');
+      const prog = resumoPrograma();
+      escrever(`${PROGRAMA.nome} · ${PROGRAMA.trilha}`, 'ok');
+      escrever(`progresso: ${prog.feitos}/${prog.total} badges (${prog.pct}%) · certificado: ${statusCertificado()}`, 'med');
+      grupos().forEach((g) => {
+        const itens = g.badges.filter((b) => todos || b.concluido);
+        const feitos = g.badges.filter((b) => b.concluido).length;
+        escrever(`\n${g.nome} (${feitos}/${g.badges.length})`);
+        itens.forEach((b) => escrever(`  ${b.concluido ? '[✓]' : '[ψ]'} ${b.nome} · ${b.emissor}${b.concluido && b.data ? ' · ' + formatarData(b.data) : ''}${b.validade ? ' (válido até ' + formatarData(b.validade) + ')' : ''}`));
+        const faltam = g.badges.length - feitos;
+        if (!todos && faltam > 0) escrever(`  [ψ] + ${faltam} em andamento`, 'med');
+      });
+      escrever(todos ? 'digite cd mainframe para ver na página' : 'digite certificados --todos para ver também os em andamento', 'ok');
     },
     github() {
       escrever('abrindo github.com/TiagoRodriguesskt …', 'ok');
@@ -931,6 +933,155 @@ function formatarData(data) {
     cartao.append(numero, corpo);
     lista.appendChild(cartao);
   });
+})();
+
+
+/* ---------- 9) BADGES E CERTIFICADO ----------
+   Lê PROGRAMA, GRUPOS e BADGES (do arquivo badges.js) e monta a parte de
+   badges da seção Mainframe: a barra de progresso do programa, o cartão
+   do certificado final, os filtros e um grupo de cartões por categoria.
+   Os badges concluídos viram links para o Credly; os em andamento ficam
+   tracejados, com um ψ no lugar da imagem. Também fica antes do bloco 7. */
+
+// Lista de badges válidos. Um badge só conta como concluído se tiver link https.
+const listaBadges = (typeof BADGES !== 'undefined' && Array.isArray(BADGES) ? BADGES : [])
+  .filter((b) => b && b.nome && b.grupo)
+  .map((b) => ({ ...b, concluido: b.status === 'concluido' && /^https:\/\//.test(b.link || '') }));
+
+// Os grupos com os seus badges: concluídos primeiro (mais novos antes), depois os em andamento
+function grupos() {
+  const lista = typeof GRUPOS !== 'undefined' && Array.isArray(GRUPOS) ? GRUPOS : [];
+  return lista.map((g) => ({
+    ...g,
+    badges: listaBadges
+      .filter((b) => b.grupo === g.id)
+      .sort((a, b) => (b.concluido - a.concluido) || String(b.data || '').localeCompare(String(a.data || ''))),
+  })).filter((g) => g.badges.length > 0);
+}
+
+// Quantos badges do programa (grupos com programa: true) já foram concluídos
+function resumoPrograma() {
+  const doPrograma = grupos().filter((g) => g.programa).flatMap((g) => g.badges);
+  const feitos = doPrograma.filter((b) => b.concluido).length;
+  const total = doPrograma.length;
+  return { feitos, total, pct: total ? Math.round((feitos / total) * 100) : 0 };
+}
+
+function statusCertificado() {
+  const c = typeof PROGRAMA !== 'undefined' && PROGRAMA.certificado;
+  if (c && c.status === 'concluido') return `concluído${c.data ? ' em ' + formatarData(c.data) : ''}`;
+  return `em andamento, previsto para ${formatarData(typeof PROGRAMA !== 'undefined' ? PROGRAMA.previsao : '')}`;
+}
+
+const NIVEIS = { fundamental: 'fundamental', intermediario: 'intermediário', avancado: 'avançado', certificado: 'certificado profissional' };
+
+(function badges() {
+  const caixa = document.getElementById('badges');
+  if (!caixa || typeof PROGRAMA === 'undefined') return;
+
+  function criar(tag, classe, texto) {
+    const el = document.createElement(tag);
+    if (classe) el.className = classe;
+    if (texto) el.textContent = texto;
+    return el;
+  }
+
+  // Barra de progresso e texto do cartão do programa
+  const prog = resumoPrograma();
+  const barra = document.getElementById('progresso-barra');
+  if (barra) barra.style.setProperty('--p', prog.pct + '%');
+  const texto = document.getElementById('progresso-texto');
+  if (texto) texto.textContent = `${prog.feitos} de ${prog.total} badges do programa · ${prog.pct}% concluído`;
+
+  // Certificado final
+  const cert = PROGRAMA.certificado || {};
+  const cartaoCert = document.getElementById('certificado-final');
+  const previsao = document.getElementById('certificado-previsao');
+  if (cartaoCert && cert.status === 'concluido') {
+    cartaoCert.classList.add('concluido');
+    cartaoCert.querySelector('.cf-estado').textContent = '|1⟩';
+    cartaoCert.querySelector('.cf-topo').textContent = '● concluído · certificado final';
+    previsao.textContent = cert.data ? `recebido em ${formatarData(cert.data)}` : 'recebido';
+    if (/^https:\/\//.test(cert.link || '')) {
+      const link = criar('a', '', ' · ver certificado ↗');
+      link.href = cert.link;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      previsao.append(link);
+    }
+  } else if (previsao) {
+    previsao.textContent = `previsto para ${formatarData(PROGRAMA.previsao)} · estado: superposição até lá`;
+  }
+
+  // Um cartão para cada badge
+  function cartaoBadge(b) {
+    const nivel = NIVEIS[b.nivel] || '';
+    let el;
+    if (b.concluido) {
+      el = criar('a', 'cert');
+      el.href = b.link;
+      el.target = '_blank';
+      el.rel = 'noopener';
+      const img = criar('img');
+      img.src = /^https:\/\//.test(b.img || '') ? b.img : 'img/icone-192.png';
+      img.alt = '';
+      img.width = 52;
+      img.height = 52;
+      img.loading = 'lazy';
+      el.append(img);
+    } else {
+      el = criar('div', 'cert pendente');
+      const psi = criar('span', 'cert-psi', 'ψ');
+      psi.setAttribute('aria-hidden', 'true');
+      el.append(psi);
+    }
+    let info = [b.emissor, nivel].filter(Boolean).join(' · ');
+    if (b.concluido && b.data) info += ` · ${formatarData(b.data)}`;
+    if (b.validade) info += ` · válido até ${formatarData(b.validade)}`;
+    const corpo = criar('span', 'cert-texto');
+    corpo.append(criar('span', 'cert-nome', b.nome), criar('span', 'cert-info', info));
+    if (!b.concluido) corpo.append(criar('span', 'cert-info m', '● em andamento'));
+    el.append(corpo);
+    el.dataset.status = b.concluido ? 'concluido' : 'andamento';
+    return el;
+  }
+
+  // Um bloco para cada grupo
+  const blocos = grupos().map((g) => {
+    const feitos = g.badges.filter((b) => b.concluido).length;
+    const bloco = criar('div', 'grupo-badges' + (g.programa ? '' : ' fora'));
+    const cabeca = criar('div', 'grupo-cabeca');
+    cabeca.append(
+      criar('h3', '', g.nome),
+      criar('span', 'grupo-conta', g.programa ? `${feitos}/${g.badges.length} concluídos` : `${feitos} badges`),
+      criar('span', 'grupo-desc', `# ${g.descricao || ''}`)
+    );
+    const grade = criar('div', 'certs-lista');
+    g.badges.forEach((b) => grade.append(cartaoBadge(b)));
+    bloco.append(cabeca, grade);
+    caixa.append(bloco);
+    return bloco;
+  });
+
+  // Filtros: mostram só os cartões com aquele status e escondem grupos vazios
+  const cartoes = [...caixa.querySelectorAll('.cert')];
+  const contar = (st) => cartoes.filter((c) => !st || c.dataset.status === st).length;
+  const filtros = document.getElementById('badges-filtros');
+  const opcoes = [['', 'todos'], ['concluido', 'concluídos'], ['andamento', 'em andamento']];
+  const botoes = opcoes.map(([st, rotulo]) => {
+    const botao = criar('button', 'filtro', rotulo + ' ');
+    botao.type = 'button';
+    botao.append(criar('span', 'n', `(${contar(st)})`));
+    botao.setAttribute('aria-pressed', st === '' ? 'true' : 'false');
+    botao.addEventListener('click', () => {
+      botoes.forEach((x) => x.setAttribute('aria-pressed', String(x === botao)));
+      cartoes.forEach((c) => { c.hidden = st !== '' && c.dataset.status !== st; });
+      blocos.forEach((bl) => { bl.hidden = !bl.querySelector('.cert:not([hidden])'); });
+    });
+    return botao;
+  });
+  filtros.append(...botoes);
+  filtros.hidden = false;
 })();
 
 

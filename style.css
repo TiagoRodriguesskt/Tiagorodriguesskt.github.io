@@ -652,12 +652,6 @@ select {
 .subtitulo-certs { margin: 0 0 16px; color: var(--suave); }
 
 /* Certificações */
-.certs-destaque {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  margin-bottom: 18px;
-}
 .certs-lista {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -685,9 +679,95 @@ select {
 .cert-info { font-size: 12px; color: var(--apagado); }
 .cert-info.m { color: var(--a2); }
 
-.cert-grande { padding: 20px; gap: 18px; }
-.cert-grande img { width: 96px; height: 96px; }
-.cert-grande .cert-nome { font-family: var(--titulo); font-size: 18px; font-weight: 700; }
+/* Barra de progresso do programa (a largura vem do script.js em --p) */
+.progresso { height: 6px; margin: 4px 0 10px; background: var(--fio); overflow: hidden; }
+.progresso span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--a1), var(--a2));
+  transition: width 1.4s cubic-bezier(.2, .8, .2, 1) .3s;
+}
+.visivel .progresso span { width: var(--p, 0%); }
+
+/* Certificado final: ainda "em superposição" */
+.certificado-final {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 22px 24px;
+  margin-bottom: 40px;
+  background: var(--painel);
+  border: 1px dashed var(--a2);
+  animation: superposto 2.4s ease-in-out infinite;
+}
+.cf-estado {
+  flex: 0 0 auto;
+  width: 84px;
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--titulo);
+  font-size: 26px;
+  color: var(--a2);
+  border: 1px dashed var(--a2);
+}
+.cf-texto { min-width: 0; }
+.cf-topo { font-size: 12px; color: var(--a2); }
+.certificado-final h3 { margin: 4px 0 2px; font-family: var(--titulo); font-size: 22px; line-height: 1.3; color: var(--forte); }
+.certificado-final .cert-info { margin: 0; }
+.cf-previsao { margin: 8px 0 0; font-size: 13px; color: var(--suave); }
+/* Quando o certificado chegar (status 'concluido' no badges.js) */
+.certificado-final.concluido { border-style: solid; border-color: var(--a1); animation: none; }
+.certificado-final.concluido .cf-estado { color: var(--a1); border: 1px solid var(--a1); }
+.certificado-final.concluido .cf-topo { color: var(--a1); }
+.certificado-final a { color: var(--a1); }
+
+/* Filtros: todos / concluídos / em andamento */
+.filtros { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.filtros[hidden] { display: none; }
+.filtro {
+  padding: 7px 14px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--suave);
+  background: transparent;
+  border: 1px solid var(--fio-claro);
+  cursor: pointer;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.filtro:hover { color: var(--forte); border-color: var(--suave); }
+.filtro[aria-pressed="true"] { color: var(--fundo); background: var(--a1); border-color: var(--a1); }
+.filtro .n { opacity: .7; }
+
+/* Grupos de badges */
+.grupo-badges { margin-bottom: 36px; }
+.grupo-badges[hidden] { display: none; }
+.grupo-cabeca { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin-bottom: 14px; }
+.grupo-cabeca h3 { margin: 0; font-family: var(--titulo); font-size: 20px; color: var(--forte); }
+.grupo-conta { font-size: 13px; color: var(--a1); }
+.grupo-desc { font-size: 12px; color: var(--apagado); }
+.grupo-badges.fora { padding-top: 28px; border-top: 1px solid var(--borda); }
+.cert[hidden] { display: none; }
+
+/* Badge ainda não recebido: tracejado laranja, sem link */
+.cert.pendente { border-style: dashed; border-color: var(--fio-claro); }
+.cert.pendente:hover { transform: none; border-color: var(--a2); box-shadow: none; }
+.cert-psi {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--titulo);
+  font-size: 20px;
+  color: var(--a2);
+  border: 1px dashed var(--a2);
+  border-radius: 50%;
+}
+.cert.pendente .cert-nome { color: var(--texto); }
 
 /* Artigos: uma lista no estilo índice de revista científica */
 .artigos { display: flex; flex-direction: column; gap: 12px; }
@@ -838,7 +918,6 @@ select {
   .grade-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .formacao { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; }
   .formacao::before { display: none; }
-  .certs-destaque { grid-template-columns: 1fr; }
   .trabalho { grid-template-columns: 1fr; }
 }
 
@@ -857,10 +936,14 @@ select {
   .etapa { padding-left: 64px; min-height: 44px; }
   .etapa .no { position: absolute; left: 0; top: 0; }
   .etapa-tipo { margin-top: 0; }
+
+  .certificado-final { flex-direction: column; align-items: flex-start; gap: 16px; padding: 20px; }
+  .cf-estado { width: 64px; height: 64px; font-size: 22px; }
 }
 
 @media (max-width: 560px) {
   .grade, .grade-4 { grid-template-columns: 1fr; }
+  .certs-lista { grid-template-columns: 1fr; }
   .terminal-linha label { display: none; }
 }
 

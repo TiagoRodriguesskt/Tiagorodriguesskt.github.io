@@ -5,8 +5,8 @@
 | | |
 |---|---|
 | **Autor** | Tiago Rodrigues · [GitHub](https://github.com/TiagoRodriguesskt) · [LinkedIn](https://www.linkedin.com/in/tiago-rodrigues-0b5417124/) |
-| **Versão** | 1.5 |
-| **Data** | outubro de 2026 |
+| **Versão** | 1.6 |
+| **Data** | novembro de 2026 |
 | **Tecnologias** | HTML5, CSS3, JavaScript (ES2020+), Canvas 2D |
 | **Dependências** | nenhuma biblioteca; apenas Google Fonts |
 | **Publicação** | GitHub Pages · `https://tiagorodriguesskt.github.io` |
@@ -116,7 +116,7 @@ Das ideias apresentadas, três foram escolhidas e outras foram acrescentadas par
 Os textos de exemplo foram trocados por dados reais, em ordem:
 
 1. **GitHub:** leitura dos repositórios públicos para escolher os projetos em destaque (`meu_universo_cientifico` e `criptografia_de_cesar`).
-2. **Credly:** os badges (12 em novembro de 2026), com imagens oficiais e link de verificação.
+2. **Credly:** os badges (12 recebidos em novembro de 2026), com imagens oficiais e link de verificação, mais os 17 que ainda faltam no programa da IBM, marcados como "em andamento".
 3. **Experiência:** cargo, empresa e atividades na CSU Digital.
 4. **LinkedIn e e-mail:** botões de contato.
 5. **Formação:** linha do tempo acadêmica.
@@ -154,8 +154,9 @@ O visual é muito específico (fios, portas, janelas de terminal). Um framework 
 Portifólio_Tiago/
 ├── index.html          estrutura e todos os textos
 ├── style.css           visual: cores, fontes, layout, animações
-├── script.js           comportamento: 8 módulos independentes
+├── script.js           comportamento: 9 módulos independentes
 ├── artigos.js          lista de artigos (o único arquivo a editar para publicar um)
+├── badges.js           badges e certificado do programa IBM Z (edite ao ganhar um badge)
 ├── favicon.ico         ícone clássico, procurado automaticamente pelos navegadores
 ├── img/
 │   ├── icone-32.png    ícone da aba do navegador
@@ -175,8 +176,11 @@ flowchart TB
         HTML["index.html<br/>estrutura e conteúdo"]
         CSS["style.css<br/>visual e animações CSS"]
         JS["script.js<br/>efeitos e interatividade"]
+        DADOS["artigos.js · badges.js<br/>dados"]
         HTML --> CSS
+        HTML --> DADOS
         HTML --> JS
+        DADOS --> JS
     end
 
     subgraph Externos["Recursos externos (somente leitura)"]
@@ -218,11 +222,13 @@ flowchart LR
     U --> T["6 · Terminal"]
     U --> N["7 · Navegação<br/>menu ativo + revelar"]
     U --> AR["8 · Artigos<br/>cartões a partir de artigos.js"]
+    U --> BD["9 · Badges<br/>progresso, certificado e filtros<br/>a partir de badges.js"]
     C -->|"rodarBell()"| T
     AR -->|"listaArtigos"| T
+    BD -->|"grupos(), resumoPrograma()"| T
 ```
 
-Cada módulo é uma **função que se executa sozinha** (IIFE), com suas próprias variáveis. Assim, um efeito não interfere no outro. As únicas ligações entre módulos são a função `rodarBell()`, que o terminal usa no comando `bell`, e a lista `listaArtigos`, que o terminal usa no comando `artigos`.
+Cada módulo é uma **função que se executa sozinha** (IIFE), com suas próprias variáveis. Assim, um efeito não interfere no outro. As únicas ligações entre módulos são a função `rodarBell()`, que o terminal usa no comando `bell`, a lista `listaArtigos`, que o terminal usa no comando `artigos`, e as funções `grupos()` e `resumoPrograma()`, que o terminal usa no comando `certificados`.
 
 ---
 
@@ -234,7 +240,7 @@ flowchart TB
     INICIO["#inicio<br/>apresentação + esfera de Bloch"]
     BELL["#bell<br/>circuito de Bell + histograma"]
     PROJ["#projetos<br/>3 projetos do GitHub"]
-    MAIN["#certificacoes<br/>trabalho, curso IBM Z e badges"]
+    MAIN["#certificacoes<br/>trabalho, programa IBM Z,<br/>certificado e badges"]
     EST["#estudos<br/>linha do tempo da formação + estudos livres"]
     ART["#artigos<br/>artigos publicados (links externos)"]
     TERM["#terminal<br/>terminal interativo"]
@@ -296,7 +302,7 @@ Um interpretador de comandos simples: o texto digitado é separado em `comando` 
 | `whoami` | apresentação curta |
 | `ls` · `cd <seção>` | lista e navega pelas seções |
 | `cat bloch.py` · `cat bell.qasm` | mostra os códigos de exemplo |
-| `projetos` · `certificados` · `formacao` · `artigos` | resumos das seções |
+| `projetos` · `certificados` · `formacao` · `artigos` | resumos das seções (`certificados --todos` inclui os badges em andamento) |
 | `contato` · `github` · `linkedin` | links |
 | `qubit` | prepara $\|+\rangle$ e mede |
 | `bell` | rola até o circuito e executa |
@@ -316,7 +322,25 @@ A lista fica num arquivo separado, `artigos.js`, para que publicar um artigo nã
 - Com a lista vazia, a seção mostra uma janela de terminal com `total 0` e o aviso "primeiro artigo em breve".
 - Se `PERFIL_ACADEMICO.link` estiver preenchido, aparece no fim da seção um link para o perfil completo.
 
-### 6.8 Navegação
+### 6.8 Badges e certificado
+
+Os badges ficam num arquivo de dados, `badges.js`, com três constantes:
+
+| Constante | O que guarda |
+|---|---|
+| `PROGRAMA` | nome do programa (IBM Z Global Skills Accelerator · Mainframe System Administrator Level 1), previsão do certificado (`2027-08`) e o status do certificado final |
+| `GRUPOS` | os grupos, na ordem do site: Fundamentos (12), Núcleo (14), Conclusão (1) e Aprendizado contínuo (fora do programa) |
+| `BADGES` | um objeto por badge: grupo, nome, emissor, nível, `status` (`'concluido'` ou `'andamento'`), data, link e imagem |
+
+O bloco 9 do `script.js` lê essas listas e monta a parte de badges da seção Mainframe:
+
+- **Progresso:** conta os badges dos grupos do programa (27) e quantos estão concluídos; a barra do cartão do programa enche até a porcentagem quando a seção aparece na tela.
+- **Certificado final:** um cartão tracejado em laranja, com $|\psi\rangle$ pulsando, que diz "previsto para ago 2027". Quando `PROGRAMA.certificado.status` virar `'concluido'`, ele fica verde, mostra $|1\rangle$ e a data, e ganha o link do certificado.
+- **Separação:** os badges do programa ficam nos grupos Fundamentos, Núcleo e Conclusão; os de fora (AI Literacy e Lifelong Learning) ficam no grupo **Aprendizado contínuo**, separado por uma linha.
+- **Concluído × em andamento:** um badge só conta como concluído se tiver `status: 'concluido'` **e** um link `https://`. Os concluídos viram links para a verificação no Credly; os em andamento não são links, têm borda tracejada e um ψ no lugar da imagem.
+- **Filtros:** os botões *todos*, *concluídos* e *em andamento* escondem os cartões de outro status e os grupos que ficam vazios.
+
+### 6.9 Navegação
 
 Dois `IntersectionObserver`:
 
@@ -542,7 +566,10 @@ Os textos secundários foram escolhidos para ter contraste de pelo menos 4,5:1 c
 | Porta do menu | `.porta` | link com borda que acende quando a seção está visível |
 | Botão | `.btn`, `.btn-primario`, `.btn-medida` | altura mínima de 44 px (área de toque confortável) |
 | Cartão | `.cartao` + `.cartao-topo` + `.cartao-corpo` | projetos, estudos, trabalho |
-| Badge | `.cert`, `.cert-grande` | imagem do Credly + nome + emissor |
+| Badge | `.cert`, `.cert.pendente` | imagem do Credly + nome + emissor; o pendente é tracejado, com ψ |
+| Certificado final | `.certificado-final` | cartão tracejado que pulsa até o certificado chegar |
+| Progresso | `.progresso` | barra que enche até a porcentagem de badges do programa |
+| Filtro | `.filtro` | botão com `aria-pressed`; o ativo fica verde |
 | Etapa | `.etapa`, `.etapa.futura` | nó da linha do tempo da formação |
 
 ---
@@ -594,7 +621,8 @@ Os testes foram feitos com um navegador Chromium automatizado (Playwright), simu
 | Medir o qubit | ✅ colapsa no polo sorteado, com a probabilidade exibida |
 | Rodar Bell sem ruído | ✅ apenas 00 e 11, concordância de 100% |
 | Rodar Bell com ruído de 2% | ✅ 01 e 10 aparecem; concordância perto de 96% |
-| Comandos do terminal | ✅ `help`, `cat`, `formacao`, `qubit` e outros |
+| Comandos do terminal | ✅ `help`, `cat`, `formacao`, `qubit`, `certificados` e outros |
+| Badges | ✅ 29 cartões (12 concluídos, 17 em andamento); progresso 10 de 27 (37%); filtros escondem os grupos vazios |
 | Desktop (1366 × 900) | ✅ layout completo |
 | Celular (390 × 844) | ✅ menu, esfera e linha do tempo adaptados |
 
@@ -628,11 +656,19 @@ Edite as variáveis `--a1` e `--a2` no topo do `style.css`. O site inteiro, incl
 
 No `index.html`, dentro de `<section id="projetos">`, copie um bloco `<article class="cartao">` e troque título, descrição, tags e link. Para manter a grade alinhada, use múltiplos de 3 cartões.
 
-### Adicionar um badge do Credly
+### Marcar um badge como concluído
 
 1. Abra `https://www.credly.com/users/tiago-r-c-goncalves/badges.json`.
 2. Copie o `id` do badge e o `image_url` do `badge_template`.
-3. No `index.html`, copie um bloco `<a class="cert">` e troque o link (`https://www.credly.com/badges/ID`), a imagem, o nome e a data.
+3. No `badges.js`, ache a linha do badge e troque `status: 'andamento'` por `status: 'concluido'`.
+4. Preencha `data` (ex.: `'2027-02'`), `link` (`'https://www.credly.com/badges/ID'`) e `img` (o `image_url`).
+5. Suba o `?v=` no `index.html` e publique. O progresso, os contadores, os filtros e o terminal se atualizam sozinhos.
+
+Um badge fora do programa entra como uma linha nova com `grupo: 'outros'`.
+
+### Receber o certificado (ago 2027)
+
+No `badges.js`, em `PROGRAMA.certificado`, troque `status` para `'concluido'` e preencha `data` e `link`.
 
 ### Atualizar a formação
 
@@ -679,7 +715,8 @@ Classes disponíveis para `escrever`: `'ok'` (verde), `'med'` (âmbar), `'erro'`
 - [ ] Adicionar uma versão em inglês do site
 - [ ] Atualizar a formação quando a graduação em Física começar (2027)
 - [ ] Publicar o primeiro artigo e preencher o `artigos.js`
-- [ ] Incluir novos badges conforme o curso IBM Z avança
+- [ ] Marcar os badges do programa IBM Z como concluídos conforme o curso avança (no `badges.js`)
+- [ ] Marcar o certificado final como concluído (previsto para ago 2027)
 
 ---
 
@@ -697,4 +734,5 @@ Classes disponíveis para `escrever`: `'ok'` (verde), `'med'` (âmbar), `'erro'`
 | 1.2 | out 2026 | Nome completo na abertura (efeito de superposição com várias palavras); ícone do site (favicon); versão `?v=4` dos arquivos |
 | 1.3 | out 2026 | Badge Agile Explorer (IBM SkillsBuild) na seção Mainframe e no comando `certificados`; versão `?v=5` |
 | 1.4 | out 2026 | Badge Lifelong Learning 2026 (Certiprof) corrigido de "em andamento" para "válido até abr 2027"; versão `?v=6` |
-| **1.5** | nov 2026 | Badge AI Literacy (IBM SkillsBuild) na seção Mainframe e no comando `certificados`; versão `?v=7` |
+| 1.5 | nov 2026 | Badge AI Literacy (IBM SkillsBuild) na seção Mainframe e no comando `certificados`; versão `?v=7` |
+| **1.6** | nov 2026 | Badges em `badges.js`: os 27 do programa IBM Z (MSA Level 1) separados em Fundamentos, Núcleo e Conclusão, os pendentes como "em andamento"; certificado final em andamento (previsto ago 2027); barra de progresso, filtros e grupo "Aprendizado contínuo"; comando `certificados --todos`; versão `?v=8` |

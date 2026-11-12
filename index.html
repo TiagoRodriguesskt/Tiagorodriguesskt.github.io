@@ -16,8 +16,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-  <!-- O "?v=7" força o navegador a baixar a versão nova. Suba o número (8, 9...) sempre que mudar o CSS ou algum .js -->
-  <link rel="stylesheet" href="style.css?v=7">
+  <!-- O "?v=8" força o navegador a baixar a versão nova. Suba o número (9, 10...) sempre que mudar o CSS ou algum .js -->
+  <link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 
@@ -226,10 +226,11 @@ qc.measure_all()</pre>
       </div>
       <p class="secao-intro">
         Desde 2020 trabalho com mainframe IBM Z, o tipo de sistema que processa transações de bancos e grandes empresas.
-        Em paralelo, faço um curso de um ano da IBM sobre a plataforma, e os badges abaixo são as etapas que já concluí.
+        Em paralelo, faço o programa de um ano da IBM para administrador de sistemas mainframe. Abaixo estão os badges
+        que já concluí e os que ainda estou cursando.
       </p>
 
-      <!-- Experiência atual e curso -->
+      <!-- Experiência atual e programa da IBM -->
       <div class="trabalho">
         <article class="cartao">
           <div class="cartao-topo">● em execução · trabalho/</div>
@@ -244,82 +245,38 @@ qc.measure_all()</pre>
           </div>
         </article>
         <article class="cartao">
-          <div class="cartao-topo medida">● em andamento · curso_ibm_z/</div>
+          <div class="cartao-topo medida">● em andamento · ibm_z_accelerator/</div>
           <div class="cartao-corpo">
-            <h3>Curso IBM Z · 1 ano</h3>
-            <p class="cert-info">IBM · em andamento</p>
-            <p>Formação na plataforma IBM Z: z/OS, z/OS UNIX System Services, programação de sistemas e prática com mainframe real no IBM Z Xplore.</p>
-            <div class="tags">11 badges IBM concluídos até agora</div>
+            <h3>Mainframe System Administrator · Level 1</h3>
+            <p class="cert-info">IBM Z Global Skills Accelerator Program · 1 ano</p>
+            <p>z/OS, comandos e painéis, UNIX System Services, JCL, REXX, redes TCP/IP, segurança, armazenamento com DFSMS,
+              CICS, Db2 e resiliência, com prática em mainframe real no IBM Z Xplore.</p>
+            <!-- A barra e o texto abaixo são calculados pelo script.js a partir do badges.js -->
+            <div class="progresso" aria-hidden="true"><span id="progresso-barra"></span></div>
+            <div class="tags" id="progresso-texto">badges do programa · certificado previsto para ago 2027</div>
           </div>
         </article>
       </div>
 
-      <p class="subtitulo-certs">$ credly --listar --verificado <span class="p"># cada badge abre a verificação oficial</span></p>
-
-      <!-- Os três principais, em destaque -->
-      <div class="certs-destaque">
-        <a class="cert cert-grande" href="https://www.credly.com/badges/74f652c9-28e4-44cb-8482-97cf418e15de" target="_blank" rel="noopener">
-          <img src="https://images.credly.com/images/3c94ec71-118c-48c0-8ffd-58af4fb5bc12/IBM_Certificate_-_zOS_Mainframe_Practitioner.png" alt="" width="96" height="96" loading="lazy">
-          <span class="cert-texto">
-            <span class="cert-nome">IBM z/OS Mainframe Practitioner</span>
-            <span class="cert-info">IBM · ago 2026</span>
-          </span>
-        </a>
-        <a class="cert cert-grande" href="https://www.credly.com/badges/24d3e81d-91b2-4804-b36f-99b4ed5b8028" target="_blank" rel="noopener">
-          <img src="https://images.credly.com/images/9dde9b48-6cec-4bc4-ab33-ffeac5c681c3/image.png" alt="" width="96" height="96" loading="lazy">
-          <span class="cert-texto">
-            <span class="cert-nome">IBM Z Xplore – Advanced</span>
-            <span class="cert-info">IBM · set 2026</span>
-          </span>
-        </a>
-        <a class="cert cert-grande" href="https://www.credly.com/badges/bd32d07b-ea5f-434b-98d3-a2bb422480fd" target="_blank" rel="noopener">
-          <img src="https://images.credly.com/images/22acc75c-8099-4403-a558-89478ae937cc/IBM_20Z_20101_20Professional_20Certificate.png" alt="" width="96" height="96" loading="lazy">
-          <span class="cert-texto">
-            <span class="cert-nome">IBM Z 101 Certificate</span>
-            <span class="cert-info">IBM · set 2026</span>
-          </span>
-        </a>
+      <!-- Certificado final: "em superposição" até agosto de 2027 -->
+      <div class="certificado-final" id="certificado-final">
+        <span class="cf-estado" aria-hidden="true">|ψ⟩</span>
+        <div class="cf-texto">
+          <span class="cf-topo">● em andamento · certificado final</span>
+          <h3>Certificate of Achievement</h3>
+          <p class="cert-info">Mainframe System Administrator Level 1 · IBM</p>
+          <p class="cf-previsao" id="certificado-previsao">previsto para ago 2027</p>
+        </div>
       </div>
 
-      <!-- Os demais, em formato compacto -->
-      <div class="certs-lista">
-        <a class="cert" href="https://www.credly.com/badges/c353835b-0a8e-44a2-a3b6-5e7237c2a65e" target="_blank" rel="noopener">
-          <img src="https://images.credly.com/images/0f3e4162-ab6b-457c-8c0d-835a14680666/image.png" alt="" width="52" height="52" loading="lazy">
-          <span class="cert-texto"><span class="cert-nome">IBM Z Xplore – Concepts</span><span class="cert-info">IBM · ago 2026</span></span>
-        </a>
-        <a class="cert" href="https://www.credly.com/badges/bab742b8-7f63-4640-97d0-5e9502c3e470" target="_blank" rel="noopener">
-          <img src="https://images.credly.com/images/067d8a35-4668-4f66-a6e2-e77ecb857da9/image.png" alt="" width="52" height="52" loading="lazy">
-          <span class="cert-texto"><span class="cert-nome">Introduction to System Programming on IBM Z</span><span class="cert-info">IBM · ago 2026</span></span>
-        </a>
-        <a class="cert" href="https://www.credly.com/badges/ff859235-b513-46f2-9f09-2d1ff9b5d9d9" target="_blank" rel="noopener">
-          <img src="https://images.credly.com/images/3b863758-8c39-4b26-8a84-12a958ae2ff4/image.png" alt="" width="52" height="52" loading="lazy">
-          <span class="cert-texto"><span class="cert-nome">Introducing z/OS UNIX System Services</span><span class="cert-info">IBM · ago 2026</span></span>
-        </a>
-        <a class="cert" href="https://www.credly.com/badges/9561670a-125a-41cd-a893-30dd6046b777" target="_blank" rel="noopener">
-          <img src="https://images.credly.com/images/c29eff7b-eeab-43f8-8ef7-d7943cf65dcd/image.png" alt="" width="52" height="52" loading="lazy">
-          <span class="cert-texto"><span class="cert-nome">Introduction to z/OS Commands and Panels on IBM Z</span><span class="cert-info">IBM · ago 2026</span></span>
-        </a>
-        <a class="cert" href="https://www.credly.com/badges/2311e1ea-5290-42ce-a82a-d79654c05ae3" target="_blank" rel="noopener">
-          <img src="https://images.credly.com/images/7bfcd4c3-3b81-41db-8396-12037b44fae7/image.png" alt="" width="52" height="52" loading="lazy">
-          <span class="cert-texto"><span class="cert-nome">Introduction to IBM z/OS</span><span class="cert-info">IBM · ago 2026</span></span>
-        </a>
-        <a class="cert" href="https://www.credly.com/badges/26803b24-b479-4797-aa8a-fd1a4b371248" target="_blank" rel="noopener">
-          <img src="https://images.credly.com/images/bc70837c-99ae-499d-a31d-2a7be79095e6/BadgeEmblem_AILiteracy.png" alt="" width="52" height="52" loading="lazy">
-          <span class="cert-texto"><span class="cert-nome">AI Literacy</span><span class="cert-info">IBM SkillsBuild · nov 2026</span></span>
-        </a>
-        <a class="cert" href="https://www.credly.com/badges/55c95cf2-39e3-4d6a-9264-0392304298b8" target="_blank" rel="noopener">
-          <img src="https://images.credly.com/images/3b7846e2-bdbd-4ed6-8543-182f47502190/image.png" alt="" width="52" height="52" loading="lazy">
-          <span class="cert-texto"><span class="cert-nome">Agile Explorer</span><span class="cert-info">IBM SkillsBuild · out 2026</span></span>
-        </a>
-        <a class="cert" href="https://www.credly.com/badges/3806060d-910d-408a-9ab9-74109721594d" target="_blank" rel="noopener">
-          <img src="https://images.credly.com/images/cfd8fce1-08b2-4d7b-97e1-f54a48adacaf/Explore_20Emerging_20Tech_201.png" alt="" width="52" height="52" loading="lazy">
-          <span class="cert-texto"><span class="cert-nome">Explore Emerging Tech</span><span class="cert-info">IBM SkillsBuild · ago 2026</span></span>
-        </a>
-        <a class="cert" href="https://www.credly.com/badges/a676e343-b91a-4387-a344-15dd038f9f1b" target="_blank" rel="noopener">
-          <img src="https://images.credly.com/images/5e2afabf-62f3-48ae-bbed-7e57c2e78c6a/blob" alt="" width="52" height="52" loading="lazy">
-          <span class="cert-texto"><span class="cert-nome">Lifelong Learning 2026</span><span class="cert-info">Certiprof · abr 2026 · válido até abr 2027</span></span>
-        </a>
-      </div>
+      <p class="subtitulo-certs">$ credly --listar --verificado <span class="p"># os concluídos abrem a verificação oficial</span></p>
+
+      <!-- Filtros e badges: montados pelo script.js (bloco 9) a partir do badges.js -->
+      <div class="filtros" id="badges-filtros" role="group" aria-label="Filtrar badges" hidden></div>
+      <div id="badges"></div>
+      <noscript>
+        <p>Ative o JavaScript para ver a lista de badges, ou veja o perfil completo no Credly pelo link abaixo.</p>
+      </noscript>
 
       <p class="mais-projetos"><a href="https://www.credly.com/users/tiago-r-c-goncalves" target="_blank" rel="noopener">$ open credly  →  perfil completo no Credly ↗</a></p>
     </section>
@@ -448,7 +405,8 @@ qc.measure_all()</pre>
     <span>nenhum qubit sofreu decoerência na construção deste site</span>
   </footer>
 
-  <script src="artigos.js?v=7"></script>
-  <script src="script.js?v=7"></script>
+  <script src="artigos.js?v=8"></script>
+  <script src="badges.js?v=8"></script>
+  <script src="script.js?v=8"></script>
 </body>
 </html>

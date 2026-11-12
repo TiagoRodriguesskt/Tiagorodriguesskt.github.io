@@ -19,8 +19,9 @@ Site pessoal no estilo **Terminal + Circuito Quântico**, feito só com HTML, CS
 |---|---|
 | `index.html` | A estrutura e todos os textos do site |
 | `style.css` | Cores, fontes e layout. As cores principais ficam no topo, em `:root` |
-| `script.js` | Todos os efeitos, separados em 8 blocos comentados |
+| `script.js` | Todos os efeitos, separados em 9 blocos comentados |
 | `artigos.js` | A lista de artigos. Para publicar um artigo, é só preencher este arquivo |
+| `badges.js` | Os badges e o certificado do programa IBM Z. Ganhou um badge? Troque `andamento` por `concluido` e cole o link |
 | `img/` e `favicon.ico` | O ícone do site, em vários tamanhos, gerado a partir de `Tiago.jpeg` |
 
 ## Efeitos
@@ -36,11 +37,13 @@ Quem configurou o sistema para reduzir animações vê o site sem os movimentos.
 
 ## Conteúdo
 
-Todas as seções já estão preenchidas: início, projetos, mainframe (trabalho, curso e certificações),
+Todas as seções já estão preenchidas: início, projetos, mainframe (trabalho, programa IBM Z, certificado e badges),
 formação e estudos, artigos e contato. Para mudar qualquer texto, edite o `index.html`.
 
 A seção **Artigos** mostra "primeiro artigo em breve" enquanto a lista do `artigos.js` estiver vazia.
 Os artigos não ficam no site: cada cartão leva ao Zenodo, arXiv ou Google Acadêmico.
+
+A seção **Mainframe** mostra os 27 badges do programa IBM Z, separados em Fundamentos, Núcleo e Conclusão, com os que ainda faltam marcados como "em andamento", e o certificado final previsto para agosto de 2027. Os badges de fora do programa ficam em "Aprendizado contínuo".
 
 O tempo de casa na CSU Digital é calculado sozinho pelo `script.js` a partir de `data-desde="2020-08"`.
 
@@ -49,6 +52,6 @@ O tempo de casa na CSU Digital é calculado sozinho pelo `script.js` a partir de
 O repositório `Tiagorodriguesskt.github.io` já existe no seu GitHub, com o portfólio antigo.
 Para publicar este site no lugar dele:
 
-1. Substitua os arquivos do repositório por estes (`index.html`, `style.css`, `script.js`, `README.md`).
+1. Substitua os arquivos do repositório por estes (`index.html`, `style.css`, `script.js`, `artigos.js`, `badges.js`, `README.md`).
 2. Em *Settings → Pages*, confira se a branch publicada é a `master` (ou `main`).
 3. Em alguns minutos o site estará em `https://tiagorodriguesskt.github.io`.
