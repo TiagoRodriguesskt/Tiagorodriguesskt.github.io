@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | **Autor** | Tiago Rodrigues · [GitHub](https://github.com/TiagoRodriguesskt) · [LinkedIn](https://www.linkedin.com/in/tiago-rodrigues-0b5417124/) |
-| **Versão** | 1.6 |
+| **Versão** | 1.7 |
 | **Data** | novembro de 2026 |
 | **Tecnologias** | HTML5, CSS3, JavaScript (ES2020+), Canvas 2D |
 | **Dependências** | nenhuma biblioteca; apenas Google Fonts |
@@ -116,7 +116,7 @@ Das ideias apresentadas, três foram escolhidas e outras foram acrescentadas par
 Os textos de exemplo foram trocados por dados reais, em ordem:
 
 1. **GitHub:** leitura dos repositórios públicos para escolher os projetos em destaque (`meu_universo_cientifico` e `criptografia_de_cesar`).
-2. **Credly:** os badges (12 recebidos em novembro de 2026), com imagens oficiais e link de verificação, mais os 17 que ainda faltam no programa da IBM, marcados como "em andamento".
+2. **Credly:** os badges (14 recebidos em novembro de 2026), com imagens oficiais e link de verificação, mais os 15 que ainda faltam no programa da IBM, marcados como "em andamento".
 3. **Experiência:** cargo, empresa e atividades na CSU Digital.
 4. **LinkedIn e e-mail:** botões de contato.
 5. **Formação:** linha do tempo acadêmica.
@@ -622,7 +622,7 @@ Os testes foram feitos com um navegador Chromium automatizado (Playwright), simu
 | Rodar Bell sem ruído | ✅ apenas 00 e 11, concordância de 100% |
 | Rodar Bell com ruído de 2% | ✅ 01 e 10 aparecem; concordância perto de 96% |
 | Comandos do terminal | ✅ `help`, `cat`, `formacao`, `qubit`, `certificados` e outros |
-| Badges | ✅ 29 cartões (12 concluídos, 17 em andamento); progresso 10 de 27 (37%); filtros escondem os grupos vazios |
+| Badges | ✅ 29 cartões (14 concluídos, 15 em andamento); progresso 12 de 27 (44%); Fundamentos completo (12/12); filtros escondem os grupos vazios |
 | Desktop (1366 × 900) | ✅ layout completo |
 | Celular (390 × 844) | ✅ menu, esfera e linha do tempo adaptados |
 
@@ -735,4 +735,5 @@ Classes disponíveis para `escrever`: `'ok'` (verde), `'med'` (âmbar), `'erro'`
 | 1.3 | out 2026 | Badge Agile Explorer (IBM SkillsBuild) na seção Mainframe e no comando `certificados`; versão `?v=5` |
 | 1.4 | out 2026 | Badge Lifelong Learning 2026 (Certiprof) corrigido de "em andamento" para "válido até abr 2027"; versão `?v=6` |
 | 1.5 | nov 2026 | Badge AI Literacy (IBM SkillsBuild) na seção Mainframe e no comando `certificados`; versão `?v=7` |
-| **1.6** | nov 2026 | Badges em `badges.js`: os 27 do programa IBM Z (MSA Level 1) separados em Fundamentos, Núcleo e Conclusão, os pendentes como "em andamento"; certificado final em andamento (previsto ago 2027); barra de progresso, filtros e grupo "Aprendizado contínuo"; comando `certificados --todos`; versão `?v=8` |
+| 1.6 | nov 2026 | Badges em `badges.js`: os 27 do programa IBM Z (MSA Level 1) separados em Fundamentos, Núcleo e Conclusão, os pendentes como "em andamento"; certificado final em andamento (previsto ago 2027); barra de progresso, filtros e grupo "Aprendizado contínuo"; comando `certificados --todos`; versão `?v=8` |
+| **1.7** | nov 2026 | Fundamentos completo: Enterprise Design Thinking Practitioner e Lifelong Professional Skills (o "Working in a Digital World: Professional Skills" do programa) concluídos; progresso 12 de 27; versão `?v=9` |
