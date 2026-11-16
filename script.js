@@ -799,10 +799,10 @@ linkedin  linkedin.com/in/tiago-rodrigues-0b5417124`);
       setTimeout(() => escrever(vivo ? 'o gato está vivo. ufa.' : 'o gato… estava só dormindo. ufa.', 'med'), 700);
     },
     artico() {
-      escrever('$ git log --reverse  →  Aprendendo-Python (mar 2019)', 'ok');
+      escrever('$ git log --reverse  →  primeiros exercícios: Aprendendo-Python (mar 2019)', 'ok');
       escrever('2 fev 2020: o GitHub Archive Program tira uma "foto" do código aberto ativo.');
       escrever('jul 2020: os filmes chegam ao cofre em Svalbard, na Noruega, para durar ~1000 anos.');
-      escrever('entre eles, os primeiros exercícios em Python do Tiago.  ❄  Arctic Code Vault Contributor', 'med');
+      escrever('código do Tiago daquela época está entre eles.  ❄  Arctic Code Vault Contributor', 'med');
     },
     svalbard() { COMANDOS.artico(); },
     date() {
