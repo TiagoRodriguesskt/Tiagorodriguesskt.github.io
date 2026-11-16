@@ -16,8 +16,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-  <!-- O "?v=10" força o navegador a baixar a versão nova. Suba o número (10, 11...) sempre que mudar o CSS ou algum .js -->
-  <link rel="stylesheet" href="style.css?v=10">
+  <!-- O "?v=11" força o navegador a baixar a versão nova. Suba o número (12, 13...) sempre que mudar o CSS ou algum .js -->
+  <link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
 
@@ -216,18 +216,23 @@ qc.measure_all()</pre>
         </article>
       </div>
 
-      <!-- Curiosidade: a medalha Arctic Code Vault Contributor do GitHub -->
-      <a class="artico" href="https://github.com/TiagoRodriguesskt/Aprendendo-Python" target="_blank" rel="noopener">
-        <span class="artico-icone" aria-hidden="true">❄</span>
-        <span class="artico-texto">
-          <span class="artico-topo">$ git log --reverse <span class="p"># 2019 · onde tudo começou</span></span>
-          <strong>Tenho código guardado no Ártico</strong>
-          <span>Em 2020, o GitHub gravou o código aberto ativo da plataforma num filme feito para durar mil anos e guardou
-            num cofre em Svalbard, na Noruega. Código meu daquela época entrou nessa coleção; por isso tenho a medalha
-            <em>Arctic Code Vault Contributor</em> no GitHub. Meus primeiros exercícios em Python, de 2019, continuam aqui.</span>
-          <span class="artico-link">ver os exercícios de 2019 ↗</span>
-        </span>
-      </a>
+      <!-- O cofre do Ártico: código de 2020 guardado em Svalbard (bloco 10 do script.js) -->
+      <div class="artico" id="artico">
+        <canvas class="artico-filme" id="artico-filme" width="180" height="180" aria-hidden="true"></canvas>
+        <div class="artico-texto">
+          <span class="artico-topo">$ cd /svalbard/arctic-world-archive <span class="p"># dentro de uma montanha, numa antiga mina de carvão</span></span>
+          <strong>Algum código meu está congelado no Ártico</strong>
+          <p>Em 2 de fevereiro de 2020, o GitHub gravou todo o código aberto ativo da plataforma num filme feito para
+            durar mil anos e guardou num cofre em Svalbard, na Noruega. Código meu entrou nessa foto: é o que diz a
+            medalha <em>Arctic Code Vault Contributor</em>. Mas o repositório não está mais acessível, e eu não sei qual era.
+            Até alguém abrir o cofre e ler o filme, ele continua em <strong class="artico-psi">superposição</strong>.</p>
+          <div class="artico-acoes">
+            <button type="button" class="artico-medir" id="artico-medir">▸ medir o estado</button>
+            <a class="artico-link" href="https://github.com/TiagoRodriguesskt/Aprendendo-Python" target="_blank" rel="noopener">os exercícios de 2019 que sobreviveram ↗</a>
+          </div>
+          <pre class="artico-saida" id="artico-saida" aria-live="polite"></pre>
+        </div>
+      </div>
 
       <p class="mais-projetos"><a href="https://github.com/TiagoRodriguesskt?tab=repositories" target="_blank" rel="noopener">$ ls --all  →  todos os repositórios no GitHub ↗</a></p>
     </section>
@@ -419,8 +424,8 @@ qc.measure_all()</pre>
     <span>nenhum qubit sofreu decoerência na construção deste site</span>
   </footer>
 
-  <script src="artigos.js?v=10"></script>
-  <script src="badges.js?v=10"></script>
-  <script src="script.js?v=10"></script>
+  <script src="artigos.js?v=11"></script>
+  <script src="badges.js?v=11"></script>
+  <script src="script.js?v=11"></script>
 </body>
 </html>

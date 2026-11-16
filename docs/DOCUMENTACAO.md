@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | **Autor** | Tiago Rodrigues · [GitHub](https://github.com/TiagoRodriguesskt) · [LinkedIn](https://www.linkedin.com/in/tiago-rodrigues-0b5417124/) |
-| **Versão** | 1.8 |
+| **Versão** | 1.9 |
 | **Data** | novembro de 2026 |
 | **Tecnologias** | HTML5, CSS3, JavaScript (ES2020+), Canvas 2D |
 | **Dependências** | nenhuma biblioteca; apenas Google Fonts |
@@ -307,7 +307,7 @@ Um interpretador de comandos simples: o texto digitado é separado em `comando` 
 | `qubit` | prepara $\|+\rangle$ e mede |
 | `bell` | rola até o circuito e executa |
 | `gato` | homenagem a Schrödinger |
-| `artico` · `svalbard` | a história do código do Tiago no Arctic Code Vault do GitHub |
+| `artico` · `svalbard` | conta a história do Arctic Code Vault e "mede" o cartão do cofre na seção Projetos |
 | `date` · `echo` · `clear` | utilitários |
 
 As setas ↑ e ↓ navegam pelo histórico de comandos.
@@ -738,4 +738,5 @@ Classes disponíveis para `escrever`: `'ok'` (verde), `'med'` (âmbar), `'erro'`
 | 1.5 | nov 2026 | Badge AI Literacy (IBM SkillsBuild) na seção Mainframe e no comando `certificados`; versão `?v=7` |
 | 1.6 | nov 2026 | Badges em `badges.js`: os 27 do programa IBM Z (MSA Level 1) separados em Fundamentos, Núcleo e Conclusão, os pendentes como "em andamento"; certificado final em andamento (previsto ago 2027); barra de progresso, filtros e grupo "Aprendizado contínuo"; comando `certificados --todos`; versão `?v=8` |
 | 1.7 | nov 2026 | Fundamentos completo: Enterprise Design Thinking Practitioner e Lifelong Professional Skills (o "Working in a Digital World: Professional Skills" do programa) concluídos; progresso 12 de 27; versão `?v=9` |
-| **1.8** | nov 2026 | Curiosidade na seção Projetos: a medalha Arctic Code Vault Contributor do GitHub, com link para os primeiros exercícios (Aprendendo-Python, 2019); comando `artico` (ou `svalbard`) no terminal; versão `?v=10` |
+| 1.8 | nov 2026 | Curiosidade na seção Projetos: a medalha Arctic Code Vault Contributor do GitHub, com link para os primeiros exercícios (Aprendendo-Python, 2019); comando `artico` (ou `svalbard`) no terminal; versão `?v=10` |
+| **1.9** | nov 2026 | O cofre do Ártico vira interativo (bloco 10 do `script.js`): canvas com um rolo de filme de bits e neve, botão "medir o estado" e texto honesto (o repositório que foi para o cofre não está mais acessível); versão `?v=11` |

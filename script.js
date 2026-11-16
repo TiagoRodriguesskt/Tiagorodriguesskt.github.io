@@ -9,6 +9,7 @@
    7) menu ativo e seções aparecendo ao rolar
    8) artigos (lista em artigos.js)
    9) badges e certificado (lista em badges.js)
+  10) o cofre do Ártico (filme congelado e a medição)
    ========================================================= */
 
 /* ---------- 1) UTILIDADES ---------- */
@@ -709,7 +710,7 @@ measure q -> c;`,
   qubit           prepara |+⟩ e mede
   bell            roda o circuito de Bell
   gato            o experimento mental mais famoso
-  artico          o código do Tiago guardado no Ártico
+  artico          mede o código do Tiago congelado no Ártico
   date            data e hora
   echo <texto>    repete o texto
   clear           limpa a tela`);
@@ -799,10 +800,12 @@ linkedin  linkedin.com/in/tiago-rodrigues-0b5417124`);
       setTimeout(() => escrever(vivo ? 'o gato está vivo. ufa.' : 'o gato… estava só dormindo. ufa.', 'med'), 700);
     },
     artico() {
-      escrever('$ git log --reverse  →  primeiros exercícios: Aprendendo-Python (mar 2019)', 'ok');
-      escrever('2 fev 2020: o GitHub Archive Program tira uma "foto" do código aberto ativo.');
-      escrever('jul 2020: os filmes chegam ao cofre em Svalbard, na Noruega, para durar ~1000 anos.');
-      escrever('código do Tiago daquela época está entre eles.  ❄  Arctic Code Vault Contributor', 'med');
+      escrever('$ cd /svalbard/arctic-world-archive', 'ok');
+      escrever('2 fev 2020: o GitHub tira uma "foto" de todo o código aberto ativo.');
+      escrever('jul 2020: o filme chega ao cofre, para durar ~1000 anos. Código do Tiago está nele.');
+      escrever('o repositório não está mais acessível; o conteúdo segue em superposição.  ❄  medindo…', 'med');
+      document.getElementById('artico').scrollIntoView({ behavior: reduzMovimento ? 'auto' : 'smooth', block: 'center' });
+      setTimeout(() => { if (typeof medirArtico === 'function') medirArtico(); }, reduzMovimento ? 0 : 700);
     },
     svalbard() { COMANDOS.artico(); },
     date() {
@@ -1090,6 +1093,159 @@ const NIVEIS = { fundamental: 'fundamental', intermediario: 'intermediário', av
   });
   filtros.append(...botoes);
   filtros.hidden = false;
+})();
+
+/* ---------- 10) O COFRE DO ÁRTICO ----------
+   Desenha, no canvas do cartão "Algum código meu está congelado no Ártico",
+   um rolo de filme como o piqlFilm do cofre de Svalbard: cada quadro é uma
+   grade de pontos (os dados gravados), passando devagar, com neve caindo.
+   O botão "medir o estado" (e o comando artico do terminal) faz a "medição":
+   o filme acelera, os quadros piscam e o resultado aparece. Como ninguém
+   sabe qual repositório foi para o cofre, o resultado é sempre honesto:
+   o estado continua desconhecido. Também fica antes do bloco 7. */
+
+let medirArtico = null;
+
+(function cofreArtico() {
+  const tela = document.getElementById('artico-filme');
+  const botao = document.getElementById('artico-medir');
+  const saida = document.getElementById('artico-saida');
+  const cartao = document.getElementById('artico');
+  if (!tela || !botao || !saida) return;
+  const ctx = tela.getContext('2d');
+
+  // Ajusta o canvas ao tamanho real na tela (nítido em telas de alta densidade)
+  let L = 0, A = 0;
+  function medir() {
+    const r = tela.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    L = Math.max(1, r.width);
+    A = Math.max(1, r.height);
+    tela.width = Math.round(L * dpr);
+    tela.height = Math.round(A * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  // Um quadro do filme: uma grade 8 × 8 de bits, como um QR code
+  const BITS = 8;
+  const novoQuadro = () => Array.from({ length: BITS * BITS }, () => Math.random() < 0.5);
+  const quadros = Array.from({ length: 6 }, novoQuadro);
+  const neve = Array.from({ length: 40 }, () => ({ x: Math.random(), y: Math.random(), v: 0.15 + Math.random() * 0.35, r: 0.6 + Math.random() * 1.4 }));
+
+  let deslocamento = 0;   // quanto o filme já andou
+  let velocidade = 6;     // pixels por segundo
+  let brilho = 0;         // flash da medição (0 a 1)
+  let ultimo = performance.now();
+  let visivel = true;
+
+  function desenhar(agora) {
+    const dt = Math.min(0.05, (agora - ultimo) / 1000);
+    ultimo = agora;
+    deslocamento += velocidade * dt;
+    brilho = Math.max(0, brilho - dt * 0.8);
+
+    ctx.clearRect(0, 0, L, A);
+    const fundo = ctx.createLinearGradient(0, 0, 0, A);
+    fundo.addColorStop(0, '#0B1430');
+    fundo.addColorStop(1, '#050815');
+    ctx.fillStyle = fundo;
+    ctx.fillRect(0, 0, L, A);
+
+    // A fita do filme, no centro
+    const largura = Math.min(L * 0.62, 112);
+    const x0 = (L - largura) / 2;
+    const passo = largura * 0.9;                   // altura de cada quadro
+    ctx.fillStyle = '#121B3A';
+    ctx.fillRect(x0, 0, largura, A);
+
+    // Furos laterais (perfurações do filme)
+    ctx.fillStyle = '#050815';
+    const furo = 7;
+    for (let y = -(deslocamento % (furo * 2)); y < A; y += furo * 2) {
+      ctx.fillRect(x0 + 3, y, 4, furo * 0.6);
+      ctx.fillRect(x0 + largura - 7, y, 4, furo * 0.6);
+    }
+
+    // Os quadros com os bits
+    const lado = largura - 22;
+    const celula = lado / BITS;
+    const inicio = deslocamento % passo;
+    const primeiro = Math.floor(deslocamento / passo);
+    for (let i = -1; i * passo - inicio < A; i++) {
+      const y = i * passo - inicio + (passo - lado) / 2;
+      const q = quadros[((primeiro + i) % quadros.length + quadros.length) % quadros.length];
+      for (let k = 0; k < BITS * BITS; k++) {
+        if (!q[k]) continue;
+        const cx = x0 + 11 + (k % BITS) * celula;
+        const cy = y + Math.floor(k / BITS) * celula;
+        ctx.fillStyle = `rgba(${143 + 112 * brilho}, ${211 + 44 * brilho}, 255, ${0.35 + 0.5 * brilho})`;
+        ctx.fillRect(cx + 0.5, cy + 0.5, celula - 1, celula - 1);
+      }
+    }
+
+    // Neve caindo por cima de tudo
+    ctx.fillStyle = 'rgba(220, 240, 255, .85)';
+    for (const f of neve) {
+      f.y += f.v * dt * (1 + velocidade / 30);
+      f.x += Math.sin(agora / 1000 + f.v * 10) * 0.0006;
+      if (f.y > 1.02) { f.y = -0.02; f.x = Math.random(); }
+      ctx.beginPath();
+      ctx.arc(f.x * L, f.y * A, f.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    if (visivel && !reduzMovimento) requestAnimationFrame(desenhar);
+  }
+
+  medir();
+  window.addEventListener('resize', medir);
+  desenhar(performance.now());
+
+  // Só anima enquanto o cartão estiver na tela
+  if ('IntersectionObserver' in window && !reduzMovimento) {
+    new IntersectionObserver(([e]) => {
+      const antes = visivel;
+      visivel = e.isIntersecting;
+      if (visivel && !antes) { ultimo = performance.now(); requestAnimationFrame(desenhar); }
+    }).observe(tela);
+  }
+
+  // Escreve uma linha na saída, com uma pausa antes
+  const espera = (ms) => new Promise((ok) => setTimeout(ok, reduzMovimento ? 0 : ms));
+  function linha(texto, classe) {
+    const span = document.createElement('span');
+    if (classe) span.className = classe;
+    span.textContent = texto + '\n';
+    saida.append(span);
+  }
+
+  let medidas = 0;
+  medirArtico = async function () {
+    if (botao.disabled) return;
+    botao.disabled = true;
+    medidas += 1;
+    saida.textContent = '';
+    cartao.classList.add('medindo');
+    velocidade = 140;                      // o filme acelera
+    linha('$ piql-reader --frame 0 --repo TiagoRodriguesskt/???', 'gelo');
+    await espera(700);
+    linha('lendo o filme… 2 fev 2020 · 21 TB · 186 rolos');
+    await espera(900);
+    quadros.forEach((_, i) => { quadros[i] = novoQuadro(); });
+    brilho = 1;                            // flash: a "medição"
+    if (reduzMovimento) desenhar(performance.now());
+    await espera(500);
+    linha('repositório: inacessível  ·  conteúdo: desconhecido', 'med');
+    await espera(600);
+    linha(medidas === 1
+      ? 'o colapso não aconteceu: o código segue no filme, feito para durar até ~3020.'
+      : `medição nº ${medidas}: mesmo resultado. alguns estados só se revelam com o tempo.`);
+    velocidade = 6;
+    cartao.classList.remove('medindo');
+    botao.textContent = '▸ medir de novo';
+    botao.disabled = false;
+  };
+  botao.addEventListener('click', medirArtico);
 })();
 
 
